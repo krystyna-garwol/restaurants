@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { Container } from "reactstrap";
 
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
@@ -39,15 +38,11 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <div id="app" className="d-flex flex-column h-100">
-        <NavBar />
-        <Container className="flex-grow-1 mt-5">
-          <Switch>
-            <Route path="/" exact render={() => <Home token={token} />} />
-            <Route path="/profile" component={Profile} />
-          </Switch>
-        </Container>
-      </div>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact render={() => <Home token={token} />} />
+        <Route path="/profile" component={Profile} />
+      </Switch>
     </Router>
   );
 };
