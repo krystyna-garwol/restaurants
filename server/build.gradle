@@ -22,6 +22,10 @@ dependencies {
     //spring boot starter
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //spring boot security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-oauth2-resource-server'
+    implementation 'org.springframework.security:spring-security-oauth2-jose'
     //database
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
