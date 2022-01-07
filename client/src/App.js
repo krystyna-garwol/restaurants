@@ -6,6 +6,7 @@ import Spinner from "./components/Spinner";
 import NavBar from "./components/NavBar";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
+import SignRestaurant from "./views/SignRestaurant";
 import history from "./utils/history";
 
 import "./styles/main.scss";
@@ -40,7 +41,8 @@ const App = () => {
       <NavBar />
       <Switch>
         <Route path="/" exact render={() => <Home token={token} />} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/sign-restaurant" render={() => <SignRestaurant />} />
       </Switch>
     </Router>
   );

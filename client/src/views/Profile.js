@@ -6,16 +6,16 @@ export const Profile = () => {
   const { user } = useAuth0();
 
   return (
-    <div className="mb-5">
+    <div className="container">
       <div className="align-items-center profile-header mb-5 text-center text-md-left">
-        <div md={2}>
+        <div>
           <img
             src={user.picture}
             alt="Profile"
             className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
           />
         </div>
-        <div md>
+        <div>
           <h2>{user.name}</h2>
           <p className="lead text-muted">{user.email}</p>
         </div>

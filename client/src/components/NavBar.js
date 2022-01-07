@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const NavBar = () => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -11,30 +12,30 @@ const NavBar = () => {
     });
 
   return (
-    <div>
-      <nav>
-        <div>LOGO</div>
-        <NavLink to="/" exact activeClassName="router-link-exact-active">
-          Home
+    <nav>
+      <NavLink to="/" className="logo-text">
+        <img className="logo" src={logo} alt="Restaurants logo" /> feeling so{" "}
+        <i id="logo-food">food</i>
+      </NavLink>
+      <div className="nav-right">
+        <NavLink
+          to="/sign-restaurant"
+          className="nav-item"
+          activeClassName="router-link-exact-active"
+        >
+          Add Your Restaurant
         </NavLink>
         {isAuthenticated && (
           <NavLink
             to="/profile"
-            exact
+            className="nav-item"
             activeClassName="router-link-exact-active"
           >
             Profile
           </NavLink>
         )}
         {!isAuthenticated && (
-          <button
-            id="qsLoginBtn"
-            color="primary"
-            className="btn-margin"
-            onClick={() => loginWithRedirect()}
-          >
-            Log in
-          </button>
+          <button onClick={() => loginWithRedirect()}>Log in</button>
         )}
         {isAuthenticated && (
           <div>
@@ -42,21 +43,14 @@ const NavBar = () => {
               src={user.picture}
               alt="Profile"
               className="nav-user-profile rounded-circle"
-              width="50"
+              width="45"
             />
 
-            <button
-              id="qsLoginBtn"
-              color="primary"
-              className="btn-margin"
-              onClick={() => logoutWithRedirect()}
-            >
-              Log out
-            </button>
+            <button onClick={() => logoutWithRedirect()}>Log out</button>
           </div>
         )}
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
