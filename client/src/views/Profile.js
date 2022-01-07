@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import Loading from "../components/Loading";
+import Spinner from "../components/Spinner";
 
 export const Profile = () => {
   const { user } = useAuth0();
@@ -25,5 +25,5 @@ export const Profile = () => {
 };
 
 export default withAuthenticationRequired(Profile, {
-  onRedirecting: () => <Loading />,
+  onRedirecting: () => <Spinner />,
 });
