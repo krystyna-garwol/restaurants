@@ -5,7 +5,7 @@ import Logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="fixed-bottom">
+    <footer>
       <div className="footer-one">
         <Link className="menu-item" to="/">
           <img className="custom-logo" src={Logo} alt="feeling so food logo" />{" "}
