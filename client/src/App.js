@@ -8,7 +8,6 @@ import Home from "./views/Home";
 import Profile from "./views/Profile";
 import Footer from "./components/Footer";
 import AddRestaurant from "./views/AddRestaurant";
-import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 
 // styles

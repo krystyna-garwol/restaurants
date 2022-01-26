@@ -20,7 +20,6 @@ body {
   width: 3rem;
   height: 3rem;
 }
-
 #logo-food {
   color: #f24c8e;
 }
@@ -28,7 +27,7 @@ body {
   flex-grow: 0 !important;
 }
 .menu-item {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 .menu-item,
 .menu-item:hover {
@@ -67,6 +66,9 @@ body {
   .navbar-nav:first-child {
     margin-top: 0;
   }
+  .menu-item {
+    margin-bottom: 0.5rem;
+  }
 }
 
 /* Footer */
@@ -83,4 +85,10 @@ body {
 }
 .copyright {
   margin-bottom: 0;
+}
+
+/* Profile */
+.rounded-circle {
+  width: 3rem;
+  height: 3rem;
 }

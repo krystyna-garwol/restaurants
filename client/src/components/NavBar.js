@@ -32,36 +32,30 @@ const NavBar = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="mobile-nav-style">
-              <Nav.Item>
-                <NavLink
-                  to="/add-restaurant"
-                  exact
-                  activeClassName="router-link-exact-active"
-                  className="menu-item"
-                >
-                  Add Your Restaurant
-                </NavLink>
-              </Nav.Item>
+              <NavLink
+                to="/add-restaurant"
+                exact
+                activeClassName="router-link-exact-active"
+                className="menu-item"
+              >
+                Add Your Restaurant
+              </NavLink>
               {isAuthenticated ? (
                 <>
-                  <Nav.Item>
-                    <NavLink
-                      to="/profile"
-                      exact
-                      activeClassName="router-link-exact-active"
-                      className="menu-item"
-                    >
-                      Profile
-                    </NavLink>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <button
-                      className="btn-colour"
-                      onClick={() => logoutWithRedirect()}
-                    >
-                      Log out
-                    </button>
-                  </Nav.Item>
+                  <NavLink
+                    to="/profile"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    className="menu-item"
+                  >
+                    Profile
+                  </NavLink>
+                  <button
+                    className="btn-colour"
+                    onClick={() => logoutWithRedirect()}
+                  >
+                    Log out
+                  </button>
                 </>
               ) : (
                 <Nav.Item>
