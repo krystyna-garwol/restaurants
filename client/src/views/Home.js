@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 const Home = ({ token }) => {
   const test = () => {
@@ -14,10 +15,10 @@ const Home = ({ token }) => {
   };
 
   return (
-    <>
+    <Container>
       <h1>Hello to Home</h1>
       <button onClick={() => test()}>Call API</button>
-    </>
+    </Container>
   );
 };
 

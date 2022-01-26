@@ -6,10 +6,14 @@ import Spinner from "./components/Spinner";
 import NavBar from "./components/NavBar";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
-import SignRestaurant from "./views/SignRestaurant";
+import Footer from "./components/Footer";
+import AddRestaurant from "./views/AddRestaurant";
+import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 
-import "./styles/main.scss";
+// styles
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/App.css";
 
 const App = () => {
   const { isLoading, getAccessTokenSilently } = useAuth0();
@@ -41,9 +45,10 @@ const App = () => {
       <NavBar />
       <Switch>
         <Route path="/" exact render={() => <Home token={token} />} />
-        <Route path="/profile" render={() => <Profile />} />
-        <Route path="/sign-restaurant" render={() => <SignRestaurant />} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/add-restaurant" component={AddRestaurant} />
       </Switch>
+      <Footer />
     </Router>
   );
 };
