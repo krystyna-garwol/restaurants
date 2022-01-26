@@ -92,3 +92,11 @@ body {
   width: 3rem;
   height: 3rem;
 }
+
+/* Hero */
+.background-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}

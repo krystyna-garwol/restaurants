@@ -4,9 +4,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import Spinner from "./components/Spinner";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
-import Footer from "./components/Footer";
 import AddRestaurant from "./views/AddRestaurant";
 import history from "./utils/history";
 
