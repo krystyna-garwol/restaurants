@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import Loading from "./components/Loading";
+import Spinner from "./components/Spinner";
 import NavBar from "./components/NavBar";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
@@ -36,7 +37,7 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return <Spinner />;
   }
 
   return (
