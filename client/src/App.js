@@ -5,10 +5,13 @@ import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
+import Footer from "./components/Footer";
+import AddRestaurant from "./views/AddRestaurant";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 
 // styles
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 
 const App = () => {
@@ -42,7 +45,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact render={() => <Home token={token} />} />
         <Route path="/profile" component={Profile} />
+        <Route path="/add-restaurant" component={AddRestaurant} />
       </Switch>
+      <Footer />
     </Router>
   );
 };
