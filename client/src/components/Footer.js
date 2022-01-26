@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Logo from "../assets/logo.png";
 
@@ -7,13 +7,13 @@ const Footer = () => {
   return (
     <footer className="fixed-bottom">
       <div className="footer-one">
-        <div>
+        <Link className="menu-item" to="/">
           <img className="custom-logo" src={Logo} alt="feeling so food logo" />{" "}
           feeling so <i id="logo-food">food</i>
-        </div>
-        <NavLink to="/add-restaurant" exact className="menu-item">
+        </Link>
+        <Link to="/add-restaurant" className="menu-item">
           Add Your Restaurant
-        </NavLink>
+        </Link>
       </div>
       <hr />
       <div className="footer-two">
