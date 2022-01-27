@@ -21,12 +21,7 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    public void deleteRestaurant(String id) {
-        restaurantRepository.deleteById(id);
-    }
-
     public List<Restaurant> getAllRestaurantsByName(String name) {
         return restaurantRepository.findAllByName(name);
     }
-
 }

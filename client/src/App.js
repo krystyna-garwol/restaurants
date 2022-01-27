@@ -9,6 +9,7 @@ import Home from "./views/Home";
 import Profile from "./views/Profile";
 import AddRestaurant from "./views/AddRestaurant";
 import history from "./utils/history";
+import { getRestaurants } from "./utils/requests";
 
 // styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,6 +18,7 @@ import "./css/App.css";
 const App = () => {
   const { isLoading, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState();
+  const [restaurants, setRestaurants] = useState([]);
   console.log(token);
 
   const callApi = async () => {
@@ -35,6 +37,10 @@ const App = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    getRestaurants(setRestaurants);
+  }, []);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -43,9 +49,18 @@ const App = () => {
     <Router history={history}>
       <NavBar />
       <Switch>
-        <Route path="/" exact render={() => <Home token={token} />} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/add-restaurant" component={AddRestaurant} />
+        <Route
+          path="/"
+          exact
+          render={() => <Home restaurants={restaurants} />}
+        />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route
+          path="/add-restaurant"
+          render={() => (
+            <AddRestaurant setRestaurants={setRestaurants} token={token} />
+          )}
+        />
       </Switch>
       <Footer />
     </Router>

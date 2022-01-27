@@ -107,3 +107,13 @@ h4 {
   background-position: center;
   opacity: 0.9;
 }
+/* Card */
+.card-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-text {
+  font-weight: 500;
+  margin-bottom: 0;
+}

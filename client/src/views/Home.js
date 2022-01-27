@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 
@@ -7,18 +6,7 @@ import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
 import HeroImage from "../assets/homepage_hero.png";
 
-const Home = ({ token }) => {
-  const test = () => {
-    axios
-      .get("http://localhost:8080/restaurants", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
-
+const Home = ({ restaurants }) => {
   return (
     <>
       <Hero
@@ -28,12 +16,10 @@ const Home = ({ token }) => {
       />
       <Container className="section">
         <Row xs={1} md={3} lg={4} className="g-4">
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
+          {restaurants.map((restaurant, id) => {
+            return <RestaurantCard restaurant={restaurant} key={id} />;
+          })}
         </Row>
-        <button onClick={() => test()}>Call API</button>
       </Container>
     </>
   );

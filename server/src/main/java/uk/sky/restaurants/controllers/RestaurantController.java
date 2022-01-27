@@ -33,10 +33,4 @@ public class RestaurantController {
         Restaurant newRestaurant = restaurantService.addRestaurant(restaurant);
         return new ResponseEntity<>(newRestaurant, HttpStatus.OK);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteRestaurant(@PathVariable String id) {
-        restaurantService.deleteRestaurant(id);
-        return new ResponseEntity<>("Restaurant was deleted.", HttpStatus.OK);
-    }
 }
