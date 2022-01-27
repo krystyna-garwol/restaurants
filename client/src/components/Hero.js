@@ -9,7 +9,7 @@ const Hero = ({ title, description, image }) => {
     >
       <Container>
         <h1>{title}</h1>
-        <p class="lead">{description}</p>
+        <p className="lead">{description}</p>
       </Container>
     </div>
   );

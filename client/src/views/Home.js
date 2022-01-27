@@ -10,7 +10,7 @@ import HeroImage from "../assets/homepage_hero.png";
 const Home = ({ token }) => {
   const test = () => {
     axios
-      .get("http://localhost:8080", {
+      .get("http://localhost:8080/restaurants", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
