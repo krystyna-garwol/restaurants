@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
 import AddRestaurant from "./views/AddRestaurant";
+import Restaurant from "./views/Restaurant";
 import history from "./utils/history";
 import { getRestaurants } from "./utils/requests";
 
@@ -52,7 +53,9 @@ const App = () => {
         <Route
           path="/"
           exact
-          render={() => <Home restaurants={restaurants} />}
+          render={() => (
+            <Home restaurants={restaurants} setRestaurants={setRestaurants} />
+          )}
         />
         <Route path="/profile" render={() => <Profile />} />
         <Route
@@ -60,6 +63,10 @@ const App = () => {
           render={() => (
             <AddRestaurant setRestaurants={setRestaurants} token={token} />
           )}
+        />
+        <Route
+          path="/restaurant"
+          render={() => <Restaurant restaurants={restaurants} />}
         />
       </Switch>
       <Footer />

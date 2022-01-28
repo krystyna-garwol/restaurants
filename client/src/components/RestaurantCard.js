@@ -12,7 +12,7 @@ const RestaurantCard = ({ restaurant }) => {
           <Card.Title>{restaurant.name}</Card.Title>
           <div className="card-section">
             <Card.Text>{restaurant.type}</Card.Text>
-            <Link to="/">
+            <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}>
               <button className="btn-colour">View Menu</button>
             </Link>
           </div>
