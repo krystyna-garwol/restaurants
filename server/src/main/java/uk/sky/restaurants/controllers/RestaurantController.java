@@ -37,7 +37,9 @@ public class RestaurantController {
             }
         }
         Restaurant newRestaurant = restaurantService.addRestaurant(restaurant);
-        storageService.uploadFile(file);
+        String restaurantId = newRestaurant.getId();
+        String imageUrl = storageService.uploadFile(file);
+        restaurantService.updateRestaurantImage(restaurantId, imageUrl);;
         return new ResponseEntity<>(newRestaurant, HttpStatus.OK);
     }
 }

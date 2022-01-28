@@ -117,3 +117,6 @@ h4 {
   font-weight: 500;
   margin-bottom: 0;
 }
+.card-img {
+  opacity: 0.7;
+}

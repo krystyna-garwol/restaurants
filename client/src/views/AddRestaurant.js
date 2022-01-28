@@ -31,6 +31,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
         city: "",
         type: "",
       });
+      setFormImage(null);
     }
   };
 
