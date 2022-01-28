@@ -35,6 +35,9 @@ dependencies {
     //testing
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    //aws
+    implementation 'com.amazonaws:aws-java-sdk:1.12.147'
+    implementation 'commons-io:commons-io:2.6'
 }
 
 test {

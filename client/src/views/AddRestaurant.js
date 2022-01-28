@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import Hero from "../components/Hero";
 import HeroImage from "../assets/addrestaurant_hero.png";
-import { addRestaurant } from "../utils/requests";
+import { addRestaurant, addRestaurantImage } from "../utils/requests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {
   const [formData, setFormData] = useState({
@@ -12,19 +12,27 @@ const AddRestaurant = ({ setRestaurants, token }) => {
     city: "",
     type: "",
   });
+  const [formImage, setFormImage] = useState();
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const handleImage = (event) => {
+    setFormImage(event.target.files[0]);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addRestaurant(formData, setRestaurants, token);
-    setFormData({
-      name: "",
-      city: "",
-      type: "",
-    });
+    if (formData.city !== "" && formData.name !== "" && formData.type !== "") {
+      addRestaurant(formData, setRestaurants, token);
+      addRestaurantImage(formImage, token);
+      setFormData({
+        name: "",
+        city: "",
+        type: "",
+      });
+    }
   };
 
   return (
@@ -73,6 +81,10 @@ const AddRestaurant = ({ setRestaurants, token }) => {
             />
           </Form.Group>
           <br />
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Image</Form.Label>
+            <Form.Control onChange={handleImage} type="file" />
+          </Form.Group>
           <button type="submit" className="btn-colour">
             Add
           </button>

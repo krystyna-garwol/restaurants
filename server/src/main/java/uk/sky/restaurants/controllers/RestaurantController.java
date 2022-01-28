@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uk.sky.restaurants.models.Restaurant;
 import uk.sky.restaurants.services.RestaurantService;
+import uk.sky.restaurants.services.StorageService;
 
 import java.util.List;
 
@@ -15,6 +17,9 @@ public class RestaurantController {
 
     @Autowired
     RestaurantService restaurantService;
+
+    @Autowired
+    private StorageService storageService;
 
     @GetMapping("")
     public ResponseEntity<List<Restaurant>> getAllRestaurants() {
@@ -32,5 +37,10 @@ public class RestaurantController {
         }
         Restaurant newRestaurant = restaurantService.addRestaurant(restaurant);
         return new ResponseEntity<>(newRestaurant, HttpStatus.OK);
+    }
+
+    @PostMapping("/images")
+    public ResponseEntity<String> addImage(MultipartFile file) {
+        return new ResponseEntity<>(storageService.uploadFile(file), HttpStatus.OK);
     }
 }

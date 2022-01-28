@@ -1,0 +1,22 @@
+spring:
+  data:
+    mongodb:
+      uri: "mongodb+srv://KrysGar:Boomer2012@cluster0.dre19.mongodb.net/restaurants"
+      database: "restaurants"
+  mongodb:
+    embedded:
+      version: "3.0.0"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://${auth0.domain}/"
+auth0:
+  audience: "restaurants-api"
+  domain: "dev-c7kpmdkq.eu.auth0.com"
+aws:
+  endpointUrl: "http://kg-restaurants-images.s3-eu-west-1.amazonaws.com"
+  accessKey: "AKIARQUEOG6S6AS35U3P"
+  secretKey: "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"
+  bucketName: "kg-restaurants-images"
+  region: "eu-west-1"
