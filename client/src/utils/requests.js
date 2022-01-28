@@ -12,26 +12,21 @@ export const getRestaurants = (setRestaurants) => {
     .catch((err) => console.log(err));
 };
 
-export const addRestaurant = (formData, setRestaurants, token) => {
+export const addRestaurant = (formData, formImage, setRestaurants, token) => {
+  let form = new FormData();
+  form.append(
+    "data",
+    new Blob([JSON.stringify(formData)], {
+      type: "application/json",
+    })
+  );
+  form.append("file", formImage);
   axiosInstance
-    .post("/restaurants", formData, {
+    .post("/restaurants", form, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
     .then(() => getRestaurants(setRestaurants))
-    .catch((err) => console.log(err));
-};
-
-export const addRestaurantImage = (formImage, token) => {
-  let formData = new FormData();
-  formData.append("file", formImage);
-  axiosInstance
-    .post("/restaurants/images", formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => res.data)
     .catch((err) => console.log(err));
 };

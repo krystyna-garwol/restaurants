@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import Hero from "../components/Hero";
 import HeroImage from "../assets/addrestaurant_hero.png";
-import { addRestaurant, addRestaurantImage } from "../utils/requests";
+import { addRestaurant } from "../utils/requests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {
   const [formData, setFormData] = useState({
@@ -25,8 +25,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formData.city !== "" && formData.name !== "" && formData.type !== "") {
-      addRestaurant(formData, setRestaurants, token);
-      addRestaurantImage(formImage, token);
+      addRestaurant(formData, formImage, setRestaurants, token);
       setFormData({
         name: "",
         city: "",

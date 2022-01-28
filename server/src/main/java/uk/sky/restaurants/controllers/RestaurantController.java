@@ -2,6 +2,7 @@ package uk.sky.restaurants.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,8 +28,8 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurants, HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant) {
+    @PostMapping(value="", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity addRestaurant(@RequestPart("data") Restaurant restaurant, @RequestPart("file") MultipartFile file) {
         List<Restaurant> restaurants = restaurantService.getAllRestaurantsByName(restaurant.getName());
         for(Restaurant r : restaurants) {
             if(r.getCity().equals(restaurant.getCity()) && r.getType().equals(restaurant.getType())) {
@@ -36,11 +37,7 @@ public class RestaurantController {
             }
         }
         Restaurant newRestaurant = restaurantService.addRestaurant(restaurant);
+        storageService.uploadFile(file);
         return new ResponseEntity<>(newRestaurant, HttpStatus.OK);
-    }
-
-    @PostMapping("/images")
-    public ResponseEntity<String> addImage(MultipartFile file) {
-        return new ResponseEntity<>(storageService.uploadFile(file), HttpStatus.OK);
     }
 }
