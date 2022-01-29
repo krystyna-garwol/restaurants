@@ -7,11 +7,18 @@ const RestaurantCard = ({ restaurant }) => {
   return (
     <Col>
       <Card>
-        <Card.Img src={restaurant.image} />
         <Card.Body>
-          <Card.Title>{restaurant.name}</Card.Title>
+          <div
+            className="card-image"
+            style={{
+              backgroundImage: `url(${restaurant.image})`,
+            }}
+          ></div>
           <div className="card-section">
-            <Card.Text>{restaurant.type}</Card.Text>
+            <div>
+              <Card.Title>{restaurant.name}</Card.Title>
+              <Card.Text>{restaurant.type}</Card.Text>
+            </div>
             <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}>
               <button className="btn-colour">View Menu</button>
             </Link>

@@ -15,7 +15,7 @@ const Home = ({ restaurants }) => {
         image={HeroImage}
       />
       <Container className="section">
-        <Row xs={1} md={3} lg={4} className="g-4">
+        <Row xs={1} md={2} lg={4} className="g-4">
           {restaurants.map((restaurant, id) => {
             return <RestaurantCard restaurant={restaurant} key={id} />;
           })}
