@@ -50,7 +50,6 @@ body {
 }
 .btn-colour:hover {
   background-color: #c8871e;
-  border: none;
 }
 .navbar-collapse {
   flex-grow: 0 !important;
@@ -107,7 +106,7 @@ h4 {
   background-position: center;
   opacity: 0.9;
 }
-/* Card */
+/* Home */
 .card-section {
   display: flex;
   align-items: flex-end;
@@ -129,4 +128,18 @@ h4 {
 .g-4 {
   --bs-gutter-y: 2rem;
   --bs-gutter-x: 2rem;
+}
+.restaurant-types {
+  text-align: center;
+}
+.btn-type {
+  background-color: #fff;
+  border: 2px solid #e09b2d;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 0.5rem 2rem 0.5rem;
+}
+.btn-type:hover {
+  background-color: #e09b2d;
+  color: #fff;
 }
