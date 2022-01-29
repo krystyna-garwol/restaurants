@@ -26,9 +26,9 @@ public class RestaurantService {
         return restaurantRepository.findAllByName(name);
     }
 
-    public void updateRestaurantImage(String id, String imageUrl) {
+    public Restaurant updateRestaurantImage(String id, String imageUrl) {
         Optional<Restaurant> existing = restaurantRepository.findById(id);
         existing.get().setImage(imageUrl);
-        restaurantRepository.save(existing.get());
+        return restaurantRepository.save(existing.get());
     }
 }
