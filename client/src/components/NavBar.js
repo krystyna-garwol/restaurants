@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 
 import Logo from "../assets/logo.png";
 
-const NavBar = () => {
+const NavBar = ({ admin }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const logoutWithRedirect = () =>
@@ -32,16 +32,18 @@ const NavBar = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="mobile-nav-style">
-              <NavLink
-                to="/add-restaurant"
-                exact
-                activeClassName="router-link-exact-active"
-                className="menu-item"
-              >
-                Add Your Restaurant
-              </NavLink>
               {isAuthenticated ? (
                 <>
+                  {admin === "admin" && (
+                    <NavLink
+                      to="/add-restaurant"
+                      exact
+                      activeClassName="router-link-exact-active"
+                      className="menu-item"
+                    >
+                      Add Restaurant
+                    </NavLink>
+                  )}
                   <NavLink
                     to="/profile"
                     exact

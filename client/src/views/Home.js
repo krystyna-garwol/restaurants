@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
 import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
 import HeroImage from "../assets/homepage_hero.png";
 
-const Home = ({ restaurants, setRestaurants }) => {
+const Home = ({ restaurants }) => {
   let allTypes = ["all", ...new Set(restaurants.map((r) => r.type))];
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const filterRestaurants = (type) => {
     if (type === "all") {
@@ -20,6 +18,10 @@ const Home = ({ restaurants, setRestaurants }) => {
     let filtered = restaurants.filter((r) => r.type === type);
     setFilteredRestaurants(filtered);
   };
+
+  useEffect(() => {
+    setFilteredRestaurants(restaurants);
+  }, [restaurants]);
 
   return (
     <>
