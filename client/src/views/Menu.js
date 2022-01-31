@@ -21,12 +21,14 @@ const Menu = ({ restaurants, admin, token }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (
       formData.name !== "" &&
       formData.course !== "" &&
       formData.price !== "" &&
-      formData.inStock !== ""
+      formData.inStock !== "" &&
+      formData.restaurantId !== ""
     ) {
       addMenu(formData, setMenuItems, token);
       setFormData({
@@ -39,8 +41,8 @@ const Menu = ({ restaurants, admin, token }) => {
   };
 
   useEffect(() => {
-    getMenus(setMenuItems);
-  }, []);
+    getMenus(setMenuItems, restaurantId);
+  }, [restaurantId]);
 
   return (
     <>
@@ -92,7 +94,7 @@ const Menu = ({ restaurants, admin, token }) => {
                       onChange={handleChange}
                       size="lg"
                       type="number"
-                      placeholder="e.g. 10"
+                      placeholder="0"
                       name="price"
                       value={formData.price}
                     />
@@ -104,7 +106,7 @@ const Menu = ({ restaurants, admin, token }) => {
                       onChange={handleChange}
                       size="lg"
                       type="number"
-                      placeholder="e.g. 20"
+                      placeholder="0"
                       name="inStock"
                       value={formData.inStock}
                     />

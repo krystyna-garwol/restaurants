@@ -12,7 +12,7 @@ import java.util.Optional;
 public class RestaurantService {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();

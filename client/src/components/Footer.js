@@ -22,7 +22,7 @@ const Footer = () => {
       </div>
       <hr />
       <div className="footer-two">
-        <p className="copyright">&copy; feeling so food 2021</p>
+        <p className="copyright">&copy; Le Restaurant 2022</p>
       </div>
     </footer>
   );
