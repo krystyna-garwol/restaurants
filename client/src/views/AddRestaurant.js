@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 
 import Hero from "../components/Hero";
 import HeroImage from "../assets/addrestaurant_hero.jpg";
-import { addRestaurant } from "../utils/requests";
+import { addRestaurant } from "../utils/restaurantRequests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {
   const [formData, setFormData] = useState({

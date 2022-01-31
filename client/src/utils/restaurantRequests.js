@@ -1,6 +1,6 @@
 import axios from "axios";
 import configJson from "../config/auth_config.json";
-import history from "../utils/history";
+import history from "./history";
 
 const axiosInstance = axios.create({
   baseURL: `${configJson.apiOrigin}`,

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
-const RestaurantCard = ({ restaurant }) => {
+const RestaurantCard = ({ restaurant, admin }) => {
   return (
     <Col>
       <Card>
@@ -20,7 +20,9 @@ const RestaurantCard = ({ restaurant }) => {
               <Card.Text>{restaurant.type}</Card.Text>
             </div>
             <Link to={`/menu/${restaurant.id}`}>
-              <button className="btn-colour">View Menu</button>
+              <button className="btn-colour">
+                {admin === "admin" ? "Add" : "View "} Menu
+              </button>
             </Link>
           </div>
         </Card.Body>

@@ -12,7 +12,7 @@ import Menu from "./views/Menu";
 import BookTable from "./views/BookTable";
 import Contact from "./views/Contact";
 import history from "./utils/history";
-import { getRestaurants } from "./utils/requests";
+import { getRestaurants } from "./utils/restaurantRequests";
 
 // styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -55,7 +55,7 @@ const App = () => {
         <Route
           path="/"
           exact
-          render={() => <Home restaurants={restaurants} />}
+          render={() => <Home restaurants={restaurants} admin={admin} />}
         />
         <Route
           path="/book-table"
@@ -69,7 +69,12 @@ const App = () => {
             <AddRestaurant setRestaurants={setRestaurants} token={token} />
           )}
         />
-        <Route path="/menu" render={() => <Menu restaurants={restaurants} />} />
+        <Route
+          path="/menu"
+          render={() => (
+            <Menu restaurants={restaurants} admin={admin} token={token} />
+          )}
+        />
       </Switch>
       <Footer />
     </Router>

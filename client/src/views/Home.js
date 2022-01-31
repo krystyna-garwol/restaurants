@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
 import HeroImage from "../assets/homepgae_hero.jpg";
 
-const Home = ({ restaurants }) => {
+const Home = ({ restaurants, admin }) => {
   let allTypes = ["all", ...new Set(restaurants.map((r) => r.type))];
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
@@ -46,7 +46,9 @@ const Home = ({ restaurants }) => {
         </div>
         <Row xs={1} md={2} lg={4} className="g-4">
           {filteredRestaurants.map((restaurant, id) => {
-            return <RestaurantCard restaurant={restaurant} key={id} />;
+            return (
+              <RestaurantCard restaurant={restaurant} key={id} admin={admin} />
+            );
           })}
         </Row>
       </Container>
