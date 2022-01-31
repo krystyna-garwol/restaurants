@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 import Hero from "../components/Hero";
 import MenuItem from "../components/MenuItem";
@@ -69,6 +70,13 @@ const Menu = ({ restaurants, admin, token }) => {
         image={restaurant[0].image}
       />
       <Container className="section">
+        <div className="note">
+          Added items are visible under the{" "}
+          <Link id="current-order-link" to="/current-order">
+            Current Order
+          </Link>{" "}
+          page, where you can review and update your order before submitting it.
+        </div>
         <Row>
           <Col sm={2}>
             <h4>Menu Type</h4>
@@ -88,7 +96,13 @@ const Menu = ({ restaurants, admin, token }) => {
           <Col sm={10}>
             {menuItems.length > 0 ? (
               filteredMenuItems.map((item) => {
-                return <MenuItem key={item.id} item={item} />;
+                return (
+                  <MenuItem
+                    key={item.id}
+                    item={item}
+                    restaurantId={restaurant[0].id}
+                  />
+                );
               })
             ) : (
               <div className="no-result">
