@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Spinner from "../components/Spinner";
 
 import Hero from "../components/Hero";
-import HeroImage from "../assets/addrestaurant_hero.png";
+import HeroImage from "../assets/addrestaurant_hero.jpg";
 import { addRestaurant } from "../utils/requests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {
@@ -36,11 +38,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
 
   return (
     <>
-      <Hero
-        title="Add your Restaurant"
-        description="Reach more customers and boost your business with us."
-        image={HeroImage}
-      />
+      <Hero title="Add Restaurant" image={HeroImage} />
       <Container className="section">
         <h4>Add restaurant</h4>
         <Form onSubmit={handleSubmit}>
@@ -93,4 +91,6 @@ const AddRestaurant = ({ setRestaurants, token }) => {
   );
 };
 
-export default AddRestaurant;
+export default withAuthenticationRequired(AddRestaurant, {
+  onRedirecting: () => <Spinner />,
+});

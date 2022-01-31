@@ -6,9 +6,11 @@ import Spinner from "./components/Spinner";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
-import Profile from "./views/Profile";
+import CurrentOrder from "./views/CurrentOrder";
 import AddRestaurant from "./views/AddRestaurant";
-import Restaurant from "./views/Restaurant";
+import Menu from "./views/Menu";
+import BookTable from "./views/BookTable";
+import Contact from "./views/Contact";
 import history from "./utils/history";
 import { getRestaurants } from "./utils/requests";
 
@@ -55,17 +57,19 @@ const App = () => {
           exact
           render={() => <Home restaurants={restaurants} />}
         />
-        <Route path="/profile" render={() => <Profile />} />
+        <Route
+          path="/book-table"
+          render={() => <BookTable restaurants={restaurants} />}
+        />
+        <Route path="/current-order" render={() => <CurrentOrder />} />
+        <Route path="/contact" render={() => <Contact />} />
         <Route
           path="/add-restaurant"
           render={() => (
             <AddRestaurant setRestaurants={setRestaurants} token={token} />
           )}
         />
-        <Route
-          path="/restaurant"
-          render={() => <Restaurant restaurants={restaurants} />}
-        />
+        <Route path="/menu" render={() => <Menu restaurants={restaurants} />} />
       </Switch>
       <Footer />
     </Router>

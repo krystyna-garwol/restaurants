@@ -8,7 +8,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: #fdfffc;
   top: 0;
   bottom: 0;
   left: 0;
@@ -21,11 +21,7 @@ body {
 
 /* Navbar */
 .custom-logo {
-  width: 3rem;
-  height: 3rem;
-}
-#logo-food {
-  color: #f24c8e;
+  width: 3.5rem;
 }
 .navbar-collapse {
   flex-grow: 0 !important;
@@ -39,17 +35,17 @@ body {
   text-decoration: none;
 }
 .router-link-exact-active {
-  border-bottom: 2px solid #f7b239 !important;
+  border-bottom: 2px solid #ff9f1c !important;
 }
 .btn-colour {
-  background-color: #e09b2d;
+  background-color: #ff9f1c;
   border: none;
-  color: #fff;
+  color: #fdfffc;
   padding: 5px 10px;
   border-radius: 5px;
 }
 .btn-colour:hover {
-  background-color: #c8871e;
+  background-color: #cc7700;
 }
 .navbar-collapse {
   flex-grow: 0 !important;
@@ -87,7 +83,7 @@ footer {
   margin-bottom: 0;
 }
 
-/* Profile */
+/* Current Order */
 .rounded-circle {
   width: 3rem;
   height: 3rem;
@@ -99,6 +95,11 @@ footer {
   background-size: cover;
   background-position: center;
   opacity: 0.9;
+  color: #fdfffc;
+}
+.lead {
+  font-weight: 400;
+  font-size: 1.6rem;
 }
 /* Home */
 .card-section {
@@ -115,7 +116,7 @@ footer {
   background-size: cover;
   background-position: center;
   height: 8rem;
-  opacity: 0.7;
+  opacity: 0.8;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
 }
@@ -127,13 +128,13 @@ footer {
   text-align: center;
 }
 .btn-type {
-  background-color: #fff;
-  border: 2px solid #e09b2d;
+  background-color: #fdfffc;
+  border: 2px solid #2ec4b6;
   padding: 5px 10px;
   border-radius: 5px;
   margin: 0 0.5rem 2rem 0.5rem;
 }
 .btn-type:hover {
-  background-color: #e09b2d;
-  color: #fff;
+  background-color: #2ec4b6;
+  color: #fdfffc;
 }

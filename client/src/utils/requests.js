@@ -1,5 +1,6 @@
 import axios from "axios";
 import configJson from "../config/auth_config.json";
+import history from "../utils/history";
 
 const axiosInstance = axios.create({
   baseURL: `${configJson.apiOrigin}`,
@@ -27,6 +28,9 @@ export const addRestaurant = (formData, formImage, setRestaurants, token) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(() => getRestaurants(setRestaurants))
+    .then(() => {
+      getRestaurants(setRestaurants);
+      history.push("/");
+    })
     .catch((err) => console.log(err));
 };

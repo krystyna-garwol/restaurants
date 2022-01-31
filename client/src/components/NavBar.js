@@ -24,9 +24,9 @@ const NavBar = ({ admin }) => {
               <img
                 className="custom-logo"
                 src={Logo}
-                alt="feeling so food logo"
+                alt="Le Restaurant logo"
               />{" "}
-              feeling so <i id="logo-food">food</i>
+              Le Restaurant
             </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle />
@@ -45,12 +45,28 @@ const NavBar = ({ admin }) => {
                     </NavLink>
                   )}
                   <NavLink
-                    to="/profile"
+                    to="/book-table"
                     exact
                     activeClassName="router-link-exact-active"
                     className="menu-item"
                   >
-                    Profile
+                    Book Table
+                  </NavLink>
+                  <NavLink
+                    to="/current-order"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    className="menu-item"
+                  >
+                    Current Order
+                  </NavLink>
+                  <NavLink
+                    to="/contact"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    className="menu-item"
+                  >
+                    Contact Us
                   </NavLink>
                   <button
                     className="btn-colour"
@@ -60,14 +76,32 @@ const NavBar = ({ admin }) => {
                   </button>
                 </>
               ) : (
-                <Nav.Item>
-                  <button
-                    className="btn-colour"
-                    onClick={() => loginWithRedirect()}
+                <>
+                  <NavLink
+                    to="/book-table"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    className="menu-item"
                   >
-                    Log in
-                  </button>
-                </Nav.Item>
+                    Book Table
+                  </NavLink>
+                  <NavLink
+                    to="/contact"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    className="menu-item"
+                  >
+                    Contact Us
+                  </NavLink>
+                  <Nav.Item>
+                    <button
+                      className="btn-colour"
+                      onClick={() => loginWithRedirect()}
+                    >
+                      Log in
+                    </button>
+                  </Nav.Item>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>

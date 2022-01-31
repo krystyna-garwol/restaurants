@@ -19,7 +19,7 @@ const RestaurantCard = ({ restaurant }) => {
               <Card.Title>{restaurant.name}</Card.Title>
               <Card.Text>{restaurant.type}</Card.Text>
             </div>
-            <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}>
+            <Link to={`/menu/${restaurant.id}`}>
               <button className="btn-colour">View Menu</button>
             </Link>
           </div>

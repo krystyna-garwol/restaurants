@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <footer>
       <Link className="menu-item" to="/">
-        <img className="custom-logo" src={Logo} alt="feeling so food logo" />{" "}
-        feeling so <i id="logo-food">food</i>
+        <img className="custom-logo" src={Logo} alt="Le Restaurant logo" /> Le
+        Restaurant
       </Link>
-      <p className="copyright">&copy; feeling so food 2021</p>
+      <p className="copyright">&copy; Le Restaurant 2022</p>
     </footer>
   );
 };

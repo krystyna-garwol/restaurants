@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 
 import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
-import HeroImage from "../assets/homepage_hero.png";
+import HeroImage from "../assets/homepgae_hero.jpg";
 
 const Home = ({ restaurants }) => {
   let allTypes = ["all", ...new Set(restaurants.map((r) => r.type))];
@@ -26,8 +26,8 @@ const Home = ({ restaurants }) => {
   return (
     <>
       <Hero
-        title="Order food to your door with us!"
-        description="Let us take the strain off cooking for yourself or your family."
+        title="Order food to your door with us"
+        description="or book a table to dine in!"
         image={HeroImage}
       />
       <Container className="section">
