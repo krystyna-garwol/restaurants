@@ -9,7 +9,7 @@ import { getMenus, addMenu } from "../utils/menuRequests";
 
 const Menu = ({ restaurants, admin, token }) => {
   const restaurantId = window.location.pathname.split("/")[2];
-  let restaurant = restaurants.filter((r) => r.id === restaurantId);
+  let restaurant = restaurants.filter((r) => r.id === restaurantId)[0];
   const [formData, setFormData] = useState({
     name: "",
     course: "",
@@ -23,7 +23,7 @@ const Menu = ({ restaurants, admin, token }) => {
 
   useEffect(() => {
     getMenus(setMenuItems, restaurantId);
-  }, [restaurantId]);
+  }, []);
 
   useEffect(() => {
     setFilteredMenuItems(menuItems);
@@ -65,9 +65,9 @@ const Menu = ({ restaurants, admin, token }) => {
   return (
     <>
       <Hero
-        title={restaurant[0].name}
+        title={restaurant && restaurant.name}
         description="Check out our menu for takeaway orders, we deliver."
-        image={restaurant[0].image}
+        image={restaurant && restaurant.image}
       />
       <Container className="section">
         <div className="note">
@@ -100,13 +100,15 @@ const Menu = ({ restaurants, admin, token }) => {
                   <MenuItem
                     key={item.id}
                     item={item}
-                    restaurantId={restaurant[0].id}
+                    restaurantId={restaurant && restaurant.id}
                   />
                 );
               })
             ) : (
               <div className="no-result">
-                {`Menu for ${restaurant[0].name} will be available soon!`}
+                {`Menu for ${
+                  restaurant && restaurant.name
+                } will be available soon!`}
               </div>
             )}
             {admin === "admin" && (
