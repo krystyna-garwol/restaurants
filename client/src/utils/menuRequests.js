@@ -15,7 +15,6 @@ export const getMenus = (setMenuItems, restaurantId) => {
 };
 
 export const addMenu = (formData, setMenuItems, token) => {
-  console.log(formData);
   axiosInstance
     .post("/menus", formData, {
       headers: {

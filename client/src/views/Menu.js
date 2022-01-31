@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 import Hero from "../components/Hero";
+import MenuItem from "../components/MenuItem";
 import { getMenus, addMenu } from "../utils/menuRequests";
 
 const Menu = ({ restaurants, admin, token }) => {
@@ -16,6 +17,16 @@ const Menu = ({ restaurants, admin, token }) => {
     restaurantId: restaurantId,
   });
   const [menuItems, setMenuItems] = useState([]);
+  const allCourses = ["all", ...new Set(menuItems.map((item) => item.course))];
+  const [filteredMenuItems, setFilteredMenuItems] = useState([]);
+
+  useEffect(() => {
+    getMenus(setMenuItems, restaurantId);
+  }, [restaurantId]);
+
+  useEffect(() => {
+    setFilteredMenuItems(menuItems);
+  }, [menuItems]);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -36,13 +47,19 @@ const Menu = ({ restaurants, admin, token }) => {
         course: "",
         price: "",
         inStock: "",
+        restaurantId: restaurantId,
       });
     }
   };
 
-  useEffect(() => {
-    getMenus(setMenuItems, restaurantId);
-  }, [restaurantId]);
+  const filterCourses = (course) => {
+    if (course === "all") {
+      setFilteredMenuItems(menuItems);
+      return;
+    }
+    const filtered = menuItems.filter((item) => item.course === course);
+    setFilteredMenuItems(filtered);
+  };
 
   return (
     <>
@@ -55,13 +72,31 @@ const Menu = ({ restaurants, admin, token }) => {
         <Row>
           <Col sm={2}>
             <h4>Menu Type</h4>
+            {menuItems.length > 0 &&
+              allCourses.map((course, index) => {
+                return (
+                  <p
+                    className="p-course"
+                    onClick={() => filterCourses(course)}
+                    key={index}
+                  >
+                    {course}
+                  </p>
+                );
+              })}
           </Col>
           <Col sm={10}>
-            {menuItems.map((item) => {
-              return <div key={item.id}>{item.name}</div>;
-            })}
+            {menuItems.length > 0 ? (
+              filteredMenuItems.map((item) => {
+                return <MenuItem key={item.id} item={item} />;
+              })
+            ) : (
+              <div className="no-result">
+                {`Menu for ${restaurant[0].name} will be available soon!`}
+              </div>
+            )}
             {admin === "admin" && (
-              <>
+              <div className="add-menu-form">
                 <h4>Add Menu</h4>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group>
@@ -116,7 +151,7 @@ const Menu = ({ restaurants, admin, token }) => {
                     Add
                   </button>
                 </Form>
-              </>
+              </div>
             )}
           </Col>
         </Row>

@@ -19,7 +19,9 @@ body {
   margin-bottom: 4rem;
 }
 
-/* Navbar */
+/* ---------- COMPONENTS ---------- */
+
+/* Navbar Component */
 .custom-logo {
   width: 3.5rem;
 }
@@ -73,7 +75,7 @@ h4 {
   }
 }
 
-/* Footer */
+/* Footer Component*/
 .footer-one {
   display: flex;
   justify-content: space-between;
@@ -89,13 +91,30 @@ h4 {
   margin-bottom: 0;
 }
 
-/* Current Order */
+/* Restaurant Menu Item Component */
+.card-menu-item {
+  margin-bottom: 1rem;
+}
+.rest-menu-item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.p-course {
+  color: #2ec4b6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ---------- PAGES ---------- */
+
+/* Current Order Page*/
 .rounded-circle {
   width: 3rem;
   height: 3rem;
 }
 
-/* Hero */
+/* Hero Page */
 .background-image {
   background-repeat: no-repeat;
   background-size: cover;
@@ -107,7 +126,7 @@ h4 {
   font-weight: 400;
   font-size: 1.6rem;
 }
-/* Home */
+/* Home Page */
 .card-section {
   display: flex;
   align-items: flex-end;
@@ -143,4 +162,13 @@ h4 {
 .btn-type:hover {
   background-color: #2ec4b6;
   color: #fdfffc;
+}
+
+/* Rstaurant Menu Page */
+.add-menu-form {
+  margin-top: 4rem;
+}
+.no-result {
+  font-size: 1.4rem;
+  color: #2ec4b6;
 }
