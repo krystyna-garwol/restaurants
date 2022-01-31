@@ -8,12 +8,18 @@ import HeroImage from "../assets/currentorder_hero.jpg";
 
 export const CurrentOrder = () => {
   const { user } = useAuth0();
-  console.log(user);
+
+  const getUserName = () => {
+    if (user.nickname.includes(".")) {
+      return user.nickname.split(".")[0];
+    }
+    return user.nickname;
+  };
 
   return (
     <>
       <Hero
-        title={`Hi ${user.nickname}`}
+        title={`Hi ${getUserName()}`}
         description="View and submit your current order."
         image={HeroImage}
       />

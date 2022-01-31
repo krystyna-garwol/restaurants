@@ -74,10 +74,16 @@ h4 {
 }
 
 /* Footer */
-footer {
+.footer-one {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.footer-one {
+  margin-bottom: 1.5rem;
+}
+.footer-two {
+  margin: 1.5rem 0 0.5rem 0;
 }
 .copyright {
   margin-bottom: 0;
