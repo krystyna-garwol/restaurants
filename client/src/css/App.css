@@ -35,12 +35,29 @@ body {
   margin: 0 0.5rem;
   cursor: pointer;
 }
-
 .btn-delete {
   color: #e71d36;
   width: 1.9rem;
   height: 1.9rem;
   cursor: pointer;
+}
+.btn-type {
+  background-color: #fdfffc;
+  border: 2px solid #2ec4b6;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 0.5rem 2rem 0.5rem;
+}
+.btn-type:hover {
+  background-color: #2ec4b6;
+  color: #fdfffc;
+}
+.btn-submit {
+  background-color: #2ec4b6;
+  border: none;
+  color: #fdfffc;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 /* ---------- COMPONENTS ---------- */
@@ -128,6 +145,16 @@ h4 {
   width: 3rem;
   height: 3rem;
 }
+.rest-menu-items {
+  margin-bottom: 2rem;
+}
+.co-btn-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+.co-btn-group {
+  margin-top: 2rem;
+}
 
 /* Hero Page */
 .background-image {
@@ -166,17 +193,6 @@ h4 {
 }
 .restaurant-types {
   text-align: center;
-}
-.btn-type {
-  background-color: #fdfffc;
-  border: 2px solid #2ec4b6;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin: 0 0.5rem 2rem 0.5rem;
-}
-.btn-type:hover {
-  background-color: #2ec4b6;
-  color: #fdfffc;
 }
 
 /* Rstaurant Menu Page */

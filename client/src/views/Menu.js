@@ -77,7 +77,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
           </Link>{" "}
           page, where you can review and update your order before submitting it.
         </div>
-        <Row>
+        <Row className="rest-menu-items">
           <Col sm={2}>
             <h4>Menu Type</h4>
             {menuItems.length > 0 &&
@@ -100,7 +100,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
                   <MenuItem
                     key={item.id}
                     item={item}
-                    restaurantId={restaurant && restaurant.id}
+                    restaurantName={restaurant && restaurant.name}
                     setPendingOrders={setPendingOrders}
                     token={token}
                   />
@@ -172,6 +172,11 @@ const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
               </div>
             )}
           </Col>
+        </Row>
+        <Row style={{ textAlign: "center" }}>
+          <Link to="/current-order">
+            <button className="btn-colour">View Current Order</button>
+          </Link>
         </Row>
       </Container>
     </>

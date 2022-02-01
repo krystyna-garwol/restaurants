@@ -1,6 +1,10 @@
 import React from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+import history from "../utils/history";
 
 import Spinner from "../components/Spinner";
 import Hero from "../components/Hero";
@@ -17,6 +21,14 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
     return user.nickname;
   };
 
+  const getTotal = () => {
+    let total = 0;
+    pendingOrders.map((order) => {
+      total += order.quantity * order.price;
+    });
+    return total;
+  };
+
   return (
     <>
       <Hero
@@ -26,16 +38,34 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
       />
       <Container className="section">
         <h4>Review your order before submitting:</h4>
-        {pendingOrders.map((order) => {
-          return (
-            <MenuItem
-              key={order.id}
-              item={order}
-              token={token}
-              setPendingOrders={setPendingOrders}
-            />
-          );
-        })}
+        <Row>
+          {pendingOrders.map((order) => {
+            return (
+              <>
+                <p>{order.restaurantName}</p>
+                <MenuItem
+                  key={order.id}
+                  item={order}
+                  token={token}
+                  setPendingOrders={setPendingOrders}
+                />
+              </>
+            );
+          })}
+        </Row>
+        <Row>
+          <h5>{`Total: £${getTotal()}`}</h5>
+        </Row>
+        <Row className="co-btn-group">
+          <Col>
+            <button onClick={() => history.goBack()} className="btn-colour">
+              Go Back
+            </button>
+          </Col>
+          <Col className="co-btn-submit">
+            <button className="btn-submit">Submit</button>
+          </Col>
+        </Row>
       </Container>
     </>
   );

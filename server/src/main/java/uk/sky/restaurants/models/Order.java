@@ -13,7 +13,7 @@ public class Order {
     private String name;
     private Integer quantity;
     private Double price;
-    private String restaurantId;
+    private String restaurantName;
     private Boolean completed;
     private String userId;
 }

@@ -8,13 +8,13 @@ import { FaRegTimesCircle } from "react-icons/fa";
 
 import { addOrder, deleteOrder } from "../utils/orderRequests";
 
-const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
+const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
   const { user } = useAuth0();
   const [formData, setFormData] = useState({
     name: item.name,
     quantity: "",
     price: item.price,
-    restaurantId: restaurantId,
+    restaurantName: restaurantName,
     completed: 0,
     userId: user.sub,
   });
@@ -43,7 +43,11 @@ const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
         <div>{item.name}</div>
         <div>£ {item.price}</div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ paddingRight: "0.5rem" }}>Quantity</div>
+          <div style={{ paddingRight: "0.5rem" }}>
+            {pathName.includes("current-order")
+              ? `Quantity: ${item.quantity}`
+              : "Quantity"}
+          </div>
           <Form style={{ marginRight: "0.5rem" }}>
             <Form.Control
               name="quantity"
