@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const MenuItem = ({ item, restaurantId }) => {
+import { addOrder } from "../utils/orderRequests";
+
+const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
+  const { user } = useAuth0();
   const [formData, setFormData] = useState({
     name: item.name,
     quantity: "",
     total: item.price,
     restaurantId: restaurantId,
     completed: 0,
+    userId: user.sub,
   });
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const addToCurrentOrder = () => {};
+  const addToCurrentOrder = () => {
+    if (formData.quantity && user) {
+      addOrder(formData, setPendingOrders, user.sub, token);
+    }
+  };
 
   return (
     <Card className="card-menu-item">

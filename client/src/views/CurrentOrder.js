@@ -6,8 +6,9 @@ import Spinner from "../components/Spinner";
 import Hero from "../components/Hero";
 import HeroImage from "../assets/currentorder_hero.jpg";
 
-export const CurrentOrder = () => {
+export const CurrentOrder = ({ pendingOrders }) => {
   const { user } = useAuth0();
+  console.log(pendingOrders);
 
   const getUserName = () => {
     if (user.nickname.includes(".")) {

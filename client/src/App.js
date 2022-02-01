@@ -13,6 +13,7 @@ import BookTable from "./views/BookTable";
 import Contact from "./views/Contact";
 import history from "./utils/history";
 import { getRestaurants } from "./utils/restaurantRequests";
+import { getPendingOrders } from "./utils/orderRequests";
 
 // styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,7 +23,9 @@ const App = () => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState();
   const [restaurants, setRestaurants] = useState([]);
+  const [pendingOrders, setPendingOrders] = useState([]);
   const admin = user && user.nickname;
+  const userId = user && user.sub;
 
   const callApi = async () => {
     const jwtToken = await getAccessTokenSilently({ ignoreCache: true }).catch(
@@ -42,7 +45,8 @@ const App = () => {
 
   useEffect(() => {
     getRestaurants(setRestaurants);
-  }, []);
+    getPendingOrders(setPendingOrders, userId);
+  }, [user]);
 
   if (isLoading) {
     return <Spinner />;
@@ -61,7 +65,10 @@ const App = () => {
           path="/book-table"
           render={() => <BookTable restaurants={restaurants} />}
         />
-        <Route path="/current-order" render={() => <CurrentOrder />} />
+        <Route
+          path="/current-order"
+          render={() => <CurrentOrder pendingOrders={pendingOrders} />}
+        />
         <Route path="/contact" render={() => <Contact />} />
         <Route
           path="/add-restaurant"
@@ -72,7 +79,12 @@ const App = () => {
         <Route
           path="/menu"
           render={() => (
-            <Menu restaurants={restaurants} admin={admin} token={token} />
+            <Menu
+              restaurants={restaurants}
+              admin={admin}
+              token={token}
+              setPendingOrders={setPendingOrders}
+            />
           )}
         />
       </Switch>

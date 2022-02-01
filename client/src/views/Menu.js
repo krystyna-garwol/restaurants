@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 import MenuItem from "../components/MenuItem";
 import { getMenus, addMenu } from "../utils/menuRequests";
 
-const Menu = ({ restaurants, admin, token }) => {
+const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
   const restaurantId = window.location.pathname.split("/")[2];
   let restaurant = restaurants.filter((r) => r.id === restaurantId)[0];
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ const Menu = ({ restaurants, admin, token }) => {
 
   useEffect(() => {
     getMenus(setMenuItems, restaurantId);
-  }, []);
+  }, [restaurantId]);
 
   useEffect(() => {
     setFilteredMenuItems(menuItems);
@@ -101,6 +101,8 @@ const Menu = ({ restaurants, admin, token }) => {
                     key={item.id}
                     item={item}
                     restaurantId={restaurant && restaurant.id}
+                    setPendingOrders={setPendingOrders}
+                    token={token}
                   />
                 );
               })
