@@ -42,39 +42,45 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
         image={HeroImage}
       />
       <Container className="section">
-        <Row>
-          {pendingOrders.map((order) => {
-            return (
-              <>
-                <p>{order.restaurantName}</p>
-                <MenuItem
-                  key={order.id}
-                  item={order}
-                  token={token}
-                  setPendingOrders={setPendingOrders}
-                />
-              </>
-            );
-          })}
-        </Row>
-        <Row>
-          <h5 className="co-total">{`Total: £${getTotal()}`}</h5>
-        </Row>
-        <Row className="co-btn-group">
-          <Col>
-            <button onClick={() => history.goBack()} className="btn-colour">
-              Go Back
-            </button>
-          </Col>
-          <Col className="co-btn-submit">
-            <button
-              onClick={() => completeCurrentOrders()}
-              className="btn-submit"
-            >
-              Submit
-            </button>
-          </Col>
-        </Row>
+        {pendingOrders.length > 0 ? (
+          <>
+            <Row>
+              {pendingOrders.map((order) => {
+                return (
+                  <>
+                    <p>{order.restaurantName}</p>
+                    <MenuItem
+                      key={order.id}
+                      item={order}
+                      token={token}
+                      setPendingOrders={setPendingOrders}
+                    />
+                  </>
+                );
+              })}
+            </Row>
+            <Row>
+              <h5 className="co-total">{`Total: £${getTotal()}`}</h5>
+            </Row>
+            <Row className="co-btn-group">
+              <Col>
+                <button onClick={() => history.goBack()} className="btn-colour">
+                  Go Back
+                </button>
+              </Col>
+              <Col className="co-btn-submit">
+                <button
+                  onClick={() => completeCurrentOrders()}
+                  className="btn-submit"
+                >
+                  Submit
+                </button>
+              </Col>
+            </Row>
+          </>
+        ) : (
+          <h5>You don't have any pending orders yet.</h5>
+        )}
       </Container>
     </>
   );

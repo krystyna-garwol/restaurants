@@ -226,6 +226,9 @@ h4 {
 /* Rstaurant Menu Page */
 .add-menu-form {
   margin-top: 4rem;
+  border: 1px solid #2ec4b6;
+  border-radius: 0.3rem;
+  padding: 1rem;
 }
 .no-result {
   font-size: 1.4rem;
