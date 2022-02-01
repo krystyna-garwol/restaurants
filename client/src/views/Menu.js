@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 import MenuItem from "../components/MenuItem";
 import { getMenus, addMenu } from "../utils/menuRequests";
 
-const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
+const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
   const restaurantId = window.location.pathname.split("/")[2];
   let restaurant = restaurants.filter((r) => r.id === restaurantId)[0];
   const [formData, setFormData] = useState({
@@ -173,11 +173,13 @@ const Menu = ({ restaurants, admin, token, setPendingOrders }) => {
             )}
           </Col>
         </Row>
-        <Row style={{ textAlign: "center" }}>
-          <Link to="/current-order">
-            <button className="btn-colour">View Current Order</button>
-          </Link>
-        </Row>
+        {user && (
+          <Row style={{ textAlign: "center" }}>
+            <Link to="/current-order">
+              <button className="btn-colour">View Current Order</button>
+            </Link>
+          </Row>
+        )}
       </Container>
     </>
   );

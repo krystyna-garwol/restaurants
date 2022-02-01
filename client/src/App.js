@@ -90,6 +90,7 @@ const App = () => {
               admin={admin}
               token={token}
               setPendingOrders={setPendingOrders}
+              user={user}
             />
           )}
         />

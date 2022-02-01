@@ -24,10 +24,10 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
 
   const getTotal = () => {
     let total = 0;
-    pendingOrders.map((order) => {
+    pendingOrders.forEach((order) => {
       total += order.quantity * order.price;
     });
-    return total;
+    return total.toFixed(2);
   };
 
   const completeCurrentOrders = () => {

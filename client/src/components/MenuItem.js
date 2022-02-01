@@ -9,7 +9,8 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { addOrder, updateOrder, deleteOrder } from "../utils/orderRequests";
 
 const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
-  const { user } = useAuth0();
+  const { user, loginWithRedirect } = useAuth0();
+  const userId = user && user.sub;
   const [formData, setFormData] = useState({
     id: item.id,
     name: item.name,
@@ -17,7 +18,7 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     price: item.price,
     restaurantName: restaurantName,
     completed: 0,
-    userId: user.sub,
+    userId: userId,
   });
 
   const pathName = window.location.pathname;
@@ -28,18 +29,23 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
 
   const addToCurrentOrder = () => {
     if (formData.quantity && user) {
-      addOrder(formData, setPendingOrders, user.sub, token);
+      addOrder(formData, setPendingOrders, userId, token);
+      setFormData({
+        quantity: "",
+      });
+    } else {
+      loginWithRedirect();
     }
   };
 
   const updateCurrentOrder = () => {
     if (formData.quantity) {
-      updateOrder(formData, setPendingOrders, user.sub, token);
+      updateOrder(formData, setPendingOrders, userId, token);
     }
   };
 
   const deleteCurrentOrder = () => {
-    deleteOrder(item.id, user.sub, setPendingOrders, token);
+    deleteOrder(item.id, userId, setPendingOrders, token);
   };
 
   return (
@@ -59,6 +65,7 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
               type="number"
               placeholder="0"
               onChange={handleChange}
+              value={formData.quantity}
             ></Form.Control>
           </Form>
           {pathName.includes("current-order") ? (
