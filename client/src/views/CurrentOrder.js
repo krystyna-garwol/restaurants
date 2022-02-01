@@ -10,6 +10,7 @@ import Spinner from "../components/Spinner";
 import Hero from "../components/Hero";
 import MenuItem from "../components/MenuItem";
 import HeroImage from "../assets/currentorder_hero.jpg";
+import { completeOrders } from "../utils/orderRequests";
 
 export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
   const { user } = useAuth0();
@@ -27,6 +28,10 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
       total += order.quantity * order.price;
     });
     return total;
+  };
+
+  const completeCurrentOrders = () => {
+    completeOrders(pendingOrders, setPendingOrders, user.sub, token);
   };
 
   return (
@@ -63,7 +68,12 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
             </button>
           </Col>
           <Col className="co-btn-submit">
-            <button className="btn-submit">Submit</button>
+            <button
+              onClick={() => completeCurrentOrders()}
+              className="btn-submit"
+            >
+              Submit
+            </button>
           </Col>
         </Row>
       </Container>

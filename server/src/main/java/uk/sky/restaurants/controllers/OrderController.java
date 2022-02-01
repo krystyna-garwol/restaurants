@@ -42,6 +42,12 @@ public class OrderController {
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }
 
+    @PutMapping("/completed")
+    public ResponseEntity<String> completeOrders(@RequestBody List<Order> orders) {
+        orderService.completeOrders(orders);
+        return new ResponseEntity<>("Orders status updated to completed.", HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable String id) {
         orderService.deleteOrder(id);

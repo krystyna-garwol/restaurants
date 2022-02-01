@@ -49,3 +49,19 @@ export const deleteOrder = (orderId, userId, setPendingOrders, token) => {
     .then(() => getPendingOrders(setPendingOrders, userId))
     .catch((err) => console.log(err));
 };
+
+export const completeOrders = (
+  pendingOrders,
+  setPendingOrders,
+  userId,
+  token
+) => {
+  axiosInstance
+    .put("/orders/completed", pendingOrders, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => getPendingOrders(setPendingOrders, userId))
+    .catch((err) => console.log(err));
+};

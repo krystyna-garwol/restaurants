@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uk.sky.restaurants.models.Order;
 import uk.sky.restaurants.repositories.OrderRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,16 @@ public class OrderService {
         Optional<Order> existing = orderRepository.findById(order.getId());
         existing.get().setQuantity(order.getQuantity());
         return orderRepository.save(existing.get());
+    }
+
+    public void completeOrders(List<Order> orders) {
+        List<String> ordersId = new ArrayList<>();
+        orders.forEach(order -> ordersId.add(order.getId()));
+        ordersId.forEach(id -> {
+            Optional<Order> existing = orderRepository.findById(id);
+            existing.get().setCompleted(true);
+            orderRepository.save(existing.get());
+        });
     }
 
     public void deleteOrder(String orderId) {
