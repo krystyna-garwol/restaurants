@@ -40,13 +40,13 @@ const App = () => {
 
   useEffect(() => {
     callApi();
+    getRestaurants(setRestaurants);
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    getRestaurants(setRestaurants);
     getPendingOrders(setPendingOrders, userId);
-  }, [user]);
+  }, [userId]);
 
   if (isLoading) {
     return <Spinner />;
@@ -67,7 +67,13 @@ const App = () => {
         />
         <Route
           path="/current-order"
-          render={() => <CurrentOrder pendingOrders={pendingOrders} />}
+          render={() => (
+            <CurrentOrder
+              pendingOrders={pendingOrders}
+              setPendingOrders={setPendingOrders}
+              token={token}
+            />
+          )}
         />
         <Route path="/contact" render={() => <Contact />} />
         <Route

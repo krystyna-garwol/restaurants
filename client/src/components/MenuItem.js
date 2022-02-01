@@ -3,18 +3,23 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { addOrder } from "../utils/orderRequests";
+import { FaEdit } from "react-icons/fa";
+import { FaRegTimesCircle } from "react-icons/fa";
+
+import { addOrder, deleteOrder } from "../utils/orderRequests";
 
 const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
   const { user } = useAuth0();
   const [formData, setFormData] = useState({
     name: item.name,
     quantity: "",
-    total: item.price,
+    price: item.price,
     restaurantId: restaurantId,
     completed: 0,
     userId: user.sub,
   });
+
+  const pathName = window.location.pathname;
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -24,6 +29,12 @@ const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
     if (formData.quantity && user) {
       addOrder(formData, setPendingOrders, user.sub, token);
     }
+  };
+
+  const updateCurrentOrder = () => {};
+
+  const deleteCurrentOrder = () => {
+    deleteOrder(item.id, user.sub, setPendingOrders, token);
   };
 
   return (
@@ -41,13 +52,26 @@ const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
               onChange={handleChange}
             ></Form.Control>
           </Form>
-          <button
-            onClick={() => addToCurrentOrder()}
-            type="submit"
-            className="btn-colour"
-          >
-            Add
-          </button>
+          {pathName.includes("current-order") ? (
+            <>
+              <FaEdit
+                className="btn-edit"
+                onClick={() => updateCurrentOrder()}
+              />
+              <FaRegTimesCircle
+                className="btn-delete"
+                onClick={() => deleteCurrentOrder()}
+              />
+            </>
+          ) : (
+            <button
+              onClick={() => addToCurrentOrder()}
+              type="submit"
+              className="btn-colour"
+            >
+              Add
+            </button>
+          )}
         </div>
       </div>
     </Card>

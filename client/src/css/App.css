@@ -18,6 +18,30 @@ body {
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+.btn-colour {
+  background-color: #ff9f1c;
+  border: none;
+  color: #fdfffc;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.btn-colour:hover {
+  background-color: #cc7700;
+}
+.btn-edit {
+  color: #2ec4b6;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.btn-delete {
+  color: #e71d36;
+  width: 1.9rem;
+  height: 1.9rem;
+  cursor: pointer;
+}
 
 /* ---------- COMPONENTS ---------- */
 
@@ -38,16 +62,6 @@ body {
 }
 .router-link-exact-active {
   border-bottom: 2px solid #ff9f1c !important;
-}
-.btn-colour {
-  background-color: #ff9f1c;
-  border: none;
-  color: #fdfffc;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-.btn-colour:hover {
-  background-color: #cc7700;
 }
 .navbar-collapse {
   flex-grow: 0 !important;

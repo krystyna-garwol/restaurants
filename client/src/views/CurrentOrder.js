@@ -4,11 +4,11 @@ import { Container } from "react-bootstrap";
 
 import Spinner from "../components/Spinner";
 import Hero from "../components/Hero";
+import MenuItem from "../components/MenuItem";
 import HeroImage from "../assets/currentorder_hero.jpg";
 
-export const CurrentOrder = ({ pendingOrders }) => {
+export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
   const { user } = useAuth0();
-  console.log(pendingOrders);
 
   const getUserName = () => {
     if (user.nickname.includes(".")) {
@@ -24,7 +24,19 @@ export const CurrentOrder = ({ pendingOrders }) => {
         description="View and submit your current order."
         image={HeroImage}
       />
-      <Container className="section"></Container>
+      <Container className="section">
+        <h4>Review your order before submitting:</h4>
+        {pendingOrders.map((order) => {
+          return (
+            <MenuItem
+              key={order.id}
+              item={order}
+              token={token}
+              setPendingOrders={setPendingOrders}
+            />
+          );
+        })}
+      </Container>
     </>
   );
 };

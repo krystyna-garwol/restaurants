@@ -35,4 +35,11 @@ public class OrderController {
         Order newOrder = orderService.addOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable String id) {
+        orderService.deleteOrder(id);
+        return new ResponseEntity<>("Order deleted", HttpStatus.OK);
+    }
+
 }

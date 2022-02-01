@@ -27,3 +27,14 @@ export const addOrder = (formData, setPendingOrders, userId, token) => {
     .then(() => getPendingOrders(setPendingOrders, userId))
     .catch((err) => console.log(err));
 };
+
+export const deleteOrder = (orderId, userId, setPendingOrders, token) => {
+  axiosInstance
+    .delete(`/orders/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => getPendingOrders(setPendingOrders, userId))
+    .catch((err) => console.log(err));
+};
