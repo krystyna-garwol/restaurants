@@ -15,8 +15,15 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public List<Order> getAllOrdersByUserId(String userId) {
-        return orderRepository.findAllByUserId(userId);
+    public List<Order> getPendingOrdersByUserId(String userId) {
+        List<Order> pendingOrders = new ArrayList<>();
+        List<Order> orders = orderRepository.findAllByUserId(userId);
+        orders.forEach(order -> {
+            if(order.getCompleted() == false) {
+                pendingOrders.add(order);
+            }
+        });
+        return pendingOrders;
     }
 
     public List<Order> getAllByNameAndUserId(String name, String userId) {

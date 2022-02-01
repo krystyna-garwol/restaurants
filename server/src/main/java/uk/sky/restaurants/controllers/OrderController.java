@@ -17,8 +17,8 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("")
-    public ResponseEntity<List<Order>> getAllOrdersByUserId(@RequestHeader("userId") String userId) {
-        List<Order> orders = orderService.getAllOrdersByUserId(userId);
+    public ResponseEntity<List<Order>> getPendingOrdersByUserId(@RequestHeader("userId") String userId) {
+        List<Order> orders = orderService.getPendingOrdersByUserId(userId);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
