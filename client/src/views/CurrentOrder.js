@@ -38,11 +38,10 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
     <>
       <Hero
         title={`Hi ${getUserName()}`}
-        description="View and submit your current order."
+        description="Here you can view, update and finalise your order."
         image={HeroImage}
       />
       <Container className="section">
-        <h4>Review your order before submitting:</h4>
         <Row>
           {pendingOrders.map((order) => {
             return (
@@ -59,7 +58,7 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
           })}
         </Row>
         <Row>
-          <h5>{`Total: £${getTotal()}`}</h5>
+          <h5 className="co-total">{`Total: £${getTotal()}`}</h5>
         </Row>
         <Row className="co-btn-group">
           <Col>

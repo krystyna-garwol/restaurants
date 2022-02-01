@@ -127,15 +127,37 @@ h4 {
   margin-bottom: 1rem;
 }
 .rest-menu-item {
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .p-course {
   color: #2ec4b6;
   font-weight: 600;
   cursor: pointer;
+}
+.quantity-item {
+  padding-right: 0.5rem;
+}
+.rest-menu-col-content {
+  display: flex;
+  align-items: center;
+}
+.rest-menu-form {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .rest-menu-col-price {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .rest-menu-col-form {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* ---------- PAGES ---------- */
@@ -153,7 +175,13 @@ h4 {
   justify-content: flex-end;
 }
 .co-btn-group {
-  margin-top: 2rem;
+  margin-top: 3rem;
+}
+.co-total {
+  margin-top: 1rem;
+}
+.co-heading {
+  margin-bottom: 2rem;
 }
 
 /* Hero Page */

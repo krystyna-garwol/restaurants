@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { FaEdit } from "react-icons/fa";
@@ -51,44 +52,52 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
   return (
     <Card className="card-menu-item">
       <div className="rest-menu-item">
-        <div>{item.name}</div>
-        <div>£ {item.price}</div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ paddingRight: "0.5rem" }}>
-            {pathName.includes("current-order")
-              ? `Quantity: ${item.quantity}`
-              : "Quantity"}
+        <Col lg={4} md={4} xs={8}>
+          <div>
+            <b>{item.name}</b>
           </div>
-          <Form style={{ marginRight: "0.5rem" }}>
-            <Form.Control
-              name="quantity"
-              type="number"
-              placeholder="0"
-              onChange={handleChange}
-              value={formData.quantity}
-            ></Form.Control>
-          </Form>
-          {pathName.includes("current-order") ? (
-            <>
-              <FaEdit
-                className="btn-edit"
-                onClick={() => updateCurrentOrder()}
-              />
-              <FaRegTimesCircle
-                className="btn-delete"
-                onClick={() => deleteCurrentOrder()}
-              />
-            </>
-          ) : (
-            <button
-              onClick={() => addToCurrentOrder()}
-              type="submit"
-              className="btn-colour"
-            >
-              Add
-            </button>
-          )}
-        </div>
+        </Col>
+        <Col lg={4} md={4} xs={4} className="rest-menu-col-price">
+          <div>£ {item.price}</div>
+        </Col>
+        <Col lg={4} md={4} xs={12} className="rest-menu-col-form">
+          <div className="rest-menu-col-content">
+            <div className="quantity-item">
+              {pathName.includes("current-order")
+                ? `Quantity: ${item.quantity}`
+                : "Quantity"}
+            </div>
+            <Form className="rest-menu-form">
+              <Form.Control
+                name="quantity"
+                type="number"
+                placeholder="0"
+                onChange={handleChange}
+                value={formData.quantity}
+              ></Form.Control>
+            </Form>
+            {pathName.includes("current-order") ? (
+              <>
+                <FaEdit
+                  className="btn-edit"
+                  onClick={() => updateCurrentOrder()}
+                />
+                <FaRegTimesCircle
+                  className="btn-delete"
+                  onClick={() => deleteCurrentOrder()}
+                />
+              </>
+            ) : (
+              <button
+                onClick={() => addToCurrentOrder()}
+                type="submit"
+                className="btn-colour"
+              >
+                Add
+              </button>
+            )}
+          </div>
+        </Col>
       </div>
     </Card>
   );
