@@ -28,6 +28,17 @@ export const addOrder = (formData, setPendingOrders, userId, token) => {
     .catch((err) => console.log(err));
 };
 
+export const updateOrder = (formData, setPendingOrders, userId, token) => {
+  axiosInstance
+    .put("/orders", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() => getPendingOrders(setPendingOrders, userId))
+    .catch((err) => console.log(err));
+};
+
 export const deleteOrder = (orderId, userId, setPendingOrders, token) => {
   axiosInstance
     .delete(`/orders/${orderId}`, {

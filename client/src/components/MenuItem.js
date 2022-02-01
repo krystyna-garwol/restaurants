@@ -6,11 +6,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FaEdit } from "react-icons/fa";
 import { FaRegTimesCircle } from "react-icons/fa";
 
-import { addOrder, deleteOrder } from "../utils/orderRequests";
+import { addOrder, updateOrder, deleteOrder } from "../utils/orderRequests";
 
 const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
   const { user } = useAuth0();
   const [formData, setFormData] = useState({
+    id: item.id,
     name: item.name,
     quantity: "",
     price: item.price,
@@ -31,7 +32,11 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     }
   };
 
-  const updateCurrentOrder = () => {};
+  const updateCurrentOrder = () => {
+    if (formData.quantity) {
+      updateOrder(formData, setPendingOrders, user.sub, token);
+    }
+  };
 
   const deleteCurrentOrder = () => {
     deleteOrder(item.id, user.sub, setPendingOrders, token);

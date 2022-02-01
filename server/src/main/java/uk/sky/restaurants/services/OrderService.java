@@ -6,6 +6,7 @@ import uk.sky.restaurants.models.Order;
 import uk.sky.restaurants.repositories.OrderRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -23,6 +24,13 @@ public class OrderService {
 
     public Order addOrder(Order order) {
         return orderRepository.save(order);
+    }
+
+    public Order updateOrder(Order order) {
+        System.out.println(order);
+        Optional<Order> existing = orderRepository.findById(order.getId());
+        existing.get().setQuantity(order.getQuantity());
+        return orderRepository.save(existing.get());
     }
 
     public void deleteOrder(String orderId) {
