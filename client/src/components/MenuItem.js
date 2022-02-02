@@ -21,32 +21,53 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     completed: 0,
     userId: userId,
   });
+  const [error, setError] = useState();
 
   const pathName = window.location.pathname;
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    if (error) setError(null);
   };
 
   const addToCurrentOrder = () => {
-    if (formData.quantity && user) {
+    const newError = findFormErrors();
+
+    if (!user) {
+      loginWithRedirect();
+    } else if (newError) {
+      setError(newError);
+    } else {
       addOrder(formData, setPendingOrders, userId, token);
       setFormData({
         quantity: "",
       });
-    } else {
-      loginWithRedirect();
     }
   };
 
   const updateCurrentOrder = () => {
-    if (formData.quantity) {
+    const newError = findFormErrors();
+    if (newError) {
+      setError(newError);
+    } else {
       updateOrder(formData, setPendingOrders, userId, token);
+      setFormData({
+        quantity: "",
+      });
     }
   };
 
   const deleteCurrentOrder = () => {
     deleteOrder(item.id, userId, setPendingOrders, token);
+  };
+
+  const findFormErrors = () => {
+    let newError = "";
+    if (!formData.quantity || formData.quantity === 0) {
+      newError = "Please provide a quantity.";
+    } else if (formData.quantity > 5)
+      newError = "You can only order a maximum of 5 items.";
+    return newError;
   };
 
   return (
@@ -74,7 +95,11 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
                 placeholder="0"
                 onChange={handleChange}
                 value={formData.quantity}
+                isInvalid={error}
               ></Form.Control>
+              <Form.Control.Feedback type="invalid">
+                {error}
+              </Form.Control.Feedback>
             </Form>
             {pathName.includes("current-order") ? (
               <>
