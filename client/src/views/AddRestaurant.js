@@ -66,72 +66,74 @@ const AddRestaurant = ({ setRestaurants, token }) => {
     <>
       <Hero title="Add Restaurant" image={HeroImage} />
       <Container className="section">
-        <h4>Add restaurant</h4>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              size="lg"
-              type="text"
-              placeholder="e.g. Casa Pizzeria"
-              name="name"
-              value={formData.name}
-              isInvalid={errors.name}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.name}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <br />
-          <Form.Group>
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              size="lg"
-              type="text"
-              placeholder="e.g. London"
-              name="city"
-              value={formData.city}
-              isInvalid={errors.city}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.city}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <br />
-          <Form.Group>
-            <Form.Label>Type</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              size="lg"
-              type="text"
-              placeholder="e.g. italian"
-              name="type"
-              value={formData.type}
-              isInvalid={errors.type}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.type}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <br />
-          <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Image</Form.Label>
-            <Form.Control
-              onChange={handleImage}
-              type="file"
-              name="image"
-              isInvalid={errors.image}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.image}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <button type="submit" className="btn-colour">
-            Add
-          </button>
-        </Form>
+        <div className="form-border">
+          <h4>Add restaurant</h4>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                size="lg"
+                type="text"
+                placeholder="e.g. Casa Pizzeria"
+                name="name"
+                value={formData.name}
+                isInvalid={errors.name}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.name}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <br />
+            <Form.Group>
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                size="lg"
+                type="text"
+                placeholder="e.g. London"
+                name="city"
+                value={formData.city}
+                isInvalid={errors.city}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.city}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <br />
+            <Form.Group>
+              <Form.Label>Type</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                size="lg"
+                type="text"
+                placeholder="e.g. italian"
+                name="type"
+                value={formData.type}
+                isInvalid={errors.type}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.type}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <br />
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                onChange={handleImage}
+                type="file"
+                name="image"
+                isInvalid={errors.image}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.image}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <button type="submit" className="btn-colour">
+              Add
+            </button>
+          </Form>
+        </div>
       </Container>
     </>
   );

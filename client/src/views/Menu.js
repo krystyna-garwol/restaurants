@@ -70,7 +70,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
         image={restaurant && restaurant.image}
       />
       <Container className="section">
-        {menuItems.length > 0 ? (
+        {menuItems.length > 0 && (
           <>
             <div className="note">
               Added items are visible under the{" "}
@@ -114,72 +114,74 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                     </Link>
                   </Row>
                 )}
-                {admin === "admin" && (
-                  <div className="add-menu-form">
-                    <h4>Add Menu</h4>
-                    <Form onSubmit={handleSubmit}>
-                      <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          onChange={handleChange}
-                          size="lg"
-                          type="text"
-                          placeholder="e.g. Garlic Pizza Bread"
-                          name="name"
-                          value={formData.name}
-                        />
-                      </Form.Group>
-                      <br />
-                      <Form.Group>
-                        <Form.Label>Course</Form.Label>
-                        <Form.Control
-                          onChange={handleChange}
-                          size="lg"
-                          type="text"
-                          placeholder="e.g. Starter"
-                          name="course"
-                          value={formData.course}
-                        />
-                      </Form.Group>
-                      <br />
-                      <Form.Group>
-                        <Form.Label>Price</Form.Label>
-                        <Form.Control
-                          onChange={handleChange}
-                          size="lg"
-                          type="number"
-                          placeholder="0"
-                          name="price"
-                          value={formData.price}
-                        />
-                      </Form.Group>
-                      <br />
-                      <Form.Group>
-                        <Form.Label>In Stock</Form.Label>
-                        <Form.Control
-                          onChange={handleChange}
-                          size="lg"
-                          type="number"
-                          placeholder="0"
-                          name="inStock"
-                          value={formData.inStock}
-                        />
-                      </Form.Group>
-                      <br />
-                      <button type="submit" className="btn-colour">
-                        Add
-                      </button>
-                    </Form>
-                  </div>
-                )}
               </Col>
             </Row>
           </>
-        ) : (
-          <h5>
-            Menu for this restaurant will be available soon. Thank you for your
-            patience.
-          </h5>
+        )}
+        {menuItems.length === 0 &&
+          (admin === undefined || admin != "admin") && (
+            <h5>
+              Menu for this restaurant will be available soon. Thank you for
+              your patience.
+            </h5>
+          )}
+        {admin === "admin" && (
+          <div className="form-border">
+            <h4>Add Menu</h4>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  size="lg"
+                  type="text"
+                  placeholder="e.g. Garlic Pizza Bread"
+                  name="name"
+                  value={formData.name}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group>
+                <Form.Label>Course</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  size="lg"
+                  type="text"
+                  placeholder="e.g. Starter"
+                  name="course"
+                  value={formData.course}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  size="lg"
+                  type="number"
+                  placeholder="0"
+                  name="price"
+                  value={formData.price}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group>
+                <Form.Label>In Stock</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  size="lg"
+                  type="number"
+                  placeholder="0"
+                  name="inStock"
+                  value={formData.inStock}
+                />
+              </Form.Group>
+              <br />
+              <button type="submit" className="btn-colour">
+                Add
+              </button>
+            </Form>
+          </div>
         )}
       </Container>
     </>

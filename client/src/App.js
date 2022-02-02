@@ -76,12 +76,14 @@ const App = () => {
           )}
         />
         <Route path="/contact" render={() => <Contact />} />
-        <Route
-          path="/add-restaurant"
-          render={() => (
-            <AddRestaurant setRestaurants={setRestaurants} token={token} />
-          )}
-        />
+        {admin === "admin" && (
+          <Route
+            path="/add-restaurant"
+            render={() => (
+              <AddRestaurant setRestaurants={setRestaurants} token={token} />
+            )}
+          />
+        )}
         <Route
           path="/menu"
           render={() => (
