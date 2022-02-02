@@ -1,7 +1,6 @@
 package uk.sky.restaurants.services;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class StorageService {
             File file = convertMultiPartToFile(multipartFile);
             String fileName = multipartFile.getOriginalFilename();
             fileUrl = endpointUrl + "/" + fileName;
-            amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file));
+            amazonS3.putObject(bucketName, fileName, file);
             file.delete();
         } catch(Exception e) {
             e.printStackTrace();

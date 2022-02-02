@@ -119,7 +119,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
           </>
         )}
         {menuItems.length === 0 &&
-          (admin === undefined || admin != "admin") && (
+          (admin === undefined || admin !== "admin") && (
             <h5>
               Menu for this restaurant will be available soon. Thank you for
               your patience.
