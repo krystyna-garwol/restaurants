@@ -26,11 +26,7 @@ public class OrderController {
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         List<Order> existing = orderService.getAllByNameAndUserId(order.getName(), order.getUserId());
         if(existing.size() != 0) {
-            for(Order o : existing) {
-                if(o.getName().equals(order.getName()) && o.getCompleted().equals(order.getCompleted())) {
-                    return new ResponseEntity<>(HttpStatus.CONFLICT);
-                }
-            }
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         Order newOrder = orderService.addOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.OK);
