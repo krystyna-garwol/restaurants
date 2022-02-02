@@ -37,7 +37,7 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void whenAddRestaurant_restaurantIsSaved() {
+    public void whenAddRestaurantCalled_restaurantIsSaved() {
         when(restaurantRepository.save(any())).thenReturn(restaurant);
         Restaurant newRestaurant = restaurantService.addRestaurant(restaurant);
         assertThat(restaurant).isEqualTo(newRestaurant);
