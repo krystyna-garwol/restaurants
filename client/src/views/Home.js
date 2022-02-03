@@ -34,31 +34,37 @@ const Home = ({ restaurants, admin }) => {
         image={HeroImage}
       />
       <Container className="section">
-        <div className="restaurant-types">
-          {allTypes.map((type, index) => {
-            return (
-              <button
-                className="btn-type"
-                onClick={() => filterRestaurants(type)}
-                key={index}
-              >
-                {type}
-              </button>
-            );
-          })}
-        </div>
-        <Row xs={1} md={2} lg={4} className="g-4">
-          {filteredRestaurants &&
-            filteredRestaurants.map((restaurant, id) => {
-              return (
-                <RestaurantCard
-                  restaurant={restaurant}
-                  key={id}
-                  admin={admin}
-                />
-              );
-            })}
-        </Row>
+        {restaurants && restaurants.length > 0 ? (
+          <>
+            <div className="restaurant-types">
+              {allTypes.map((type, index) => {
+                return (
+                  <button
+                    className="btn-type"
+                    onClick={() => filterRestaurants(type)}
+                    key={index}
+                  >
+                    {type}
+                  </button>
+                );
+              })}
+            </div>
+            <Row xs={1} md={2} lg={4} className="g-4">
+              {filteredRestaurants &&
+                filteredRestaurants.map((restaurant, id) => {
+                  return (
+                    <RestaurantCard
+                      restaurant={restaurant}
+                      key={id}
+                      admin={admin}
+                    />
+                  );
+                })}
+            </Row>
+          </>
+        ) : (
+          <h5>No restaurants available yet.</h5>
+        )}
       </Container>
     </>
   );
