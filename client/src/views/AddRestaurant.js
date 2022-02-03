@@ -54,7 +54,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
 
     if (!name || name === "") newErrors.name = "Please provide a name.";
     else if (name.length > 20)
-      newErrors.name = "Name is too long. The maximum length is 30 characters.";
+      newErrors.name = "Name is too long. The maximum length is 20 characters.";
 
     if (!city || city === "") newErrors.city = "Please provide a city.";
     if (!type || type === "") newErrors.type = "Please provide a type.";

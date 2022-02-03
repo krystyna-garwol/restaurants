@@ -80,7 +80,7 @@ const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
             </Row>
           </>
         ) : (
-          <h5>You don't have any pending orders yet.</h5>
+          <h5>You don't have any pending orders.</h5>
         )}
       </Container>
     </>

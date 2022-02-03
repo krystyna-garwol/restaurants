@@ -21,6 +21,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
   const [menuItems, setMenuItems] = useState([]);
   const allCourses = ["all", ...new Set(menuItems.map((item) => item.course))];
   const [filteredMenuItems, setFilteredMenuItems] = useState([]);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     getMenus(setMenuItems, restaurantId);
@@ -32,17 +33,17 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    if (errors[event.target.name]) {
+      setErrors({ ...errors, [event.target.name]: null });
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      formData.name !== "" &&
-      formData.course !== "" &&
-      formData.price !== "" &&
-      formData.inStock !== "" &&
-      formData.restaurantId !== ""
-    ) {
+    const newErrors = findFormErrors();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
       addMenu(formData, setMenuItems, token);
       setFormData({
         name: "",
@@ -52,6 +53,22 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
         restaurantId: restaurantId,
       });
     }
+  };
+
+  const findFormErrors = () => {
+    const { name, course, price, inStock } = formData;
+    const newErrors = {};
+
+    if (!name || name === "") newErrors.name = "Please provide a name.";
+    else if (name.length > 30)
+      newErrors.name = "Name is too long. The maximum length is 30 characters.";
+
+    if (!course || course === "")
+      newErrors.course = "Please add type of a course.";
+    if (!price || price === "") newErrors.price = "Please provide a price.";
+    if (!inStock || inStock === "")
+      newErrors.inStock = "Please provide a stock number.";
+    return newErrors;
   };
 
   const filterCourses = (course) => {
@@ -139,7 +156,11 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                   placeholder="e.g. Garlic Pizza Bread"
                   name="name"
                   value={formData.name}
+                  isInvalid={errors.name}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name}
+                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group>
@@ -151,7 +172,11 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                   placeholder="e.g. Starter"
                   name="course"
                   value={formData.course}
+                  isInvalid={errors.course}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.course}
+                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group>
@@ -163,7 +188,11 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                   placeholder="0"
                   name="price"
                   value={formData.price}
+                  isInvalid={errors.price}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group>
@@ -175,7 +204,11 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                   placeholder="0"
                   name="inStock"
                   value={formData.inStock}
+                  isInvalid={errors.inStock}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.inStock}
+                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <button type="submit" className="btn-colour">
