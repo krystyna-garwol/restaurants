@@ -24,7 +24,7 @@ public class MenuRepositoryTest {
 
     @Test
     @Order(1)
-    public void whenSaveCalled_restaurantIsSaved() {
+    public void whenSaveCalled_menuIsSaved() {
         MenuItem savedMenuItem = menuRepository.save(menuItem);
         assertThat(menuItem).isEqualTo(savedMenuItem);
     }
