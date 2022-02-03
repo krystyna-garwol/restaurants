@@ -5,7 +5,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Spinner from "../components/Spinner";
 
 import Hero from "../components/Hero";
-import HeroImage from "../assets/addrestaurant_hero.jpg";
+import HeroImage from "../assets/addrestaurant.hero.jpg";
 import { addRestaurant } from "../utils/restaurantRequests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {

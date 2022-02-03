@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 
 import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
-import HeroImage from "../assets/homepgae_hero.jpg";
+import HeroImage from "../assets/homepage_hero.jpg";
 
 const Home = ({ restaurants, admin }) => {
   let allTypes = [
