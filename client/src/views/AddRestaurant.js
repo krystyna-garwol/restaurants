@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Spinner from "../components/Spinner";
 
 import Hero from "../components/Hero";
@@ -9,6 +9,7 @@ import HeroImage from "../assets/addrestaurant_hero.jpg";
 import { addRestaurant } from "../utils/restaurantRequests";
 
 const AddRestaurant = ({ setRestaurants, token }) => {
+  const { isLoading } = useAuth0();
   const [formData, setFormData] = useState({
     name: "",
     city: "",
@@ -61,6 +62,10 @@ const AddRestaurant = ({ setRestaurants, token }) => {
       newErrors.image = "Please add an image.";
     return newErrors;
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

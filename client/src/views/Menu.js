@@ -9,7 +9,8 @@ import { getMenus, addMenu } from "../utils/menuRequests";
 
 const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
   const restaurantId = window.location.pathname.split("/")[2];
-  let restaurant = restaurants.filter((r) => r.id === restaurantId)[0];
+  let restaurant =
+    restaurants && restaurants.filter((r) => r.id === restaurantId)[0];
   const [formData, setFormData] = useState({
     name: "",
     course: "",

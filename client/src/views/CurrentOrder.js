@@ -12,14 +12,15 @@ import MenuItem from "../components/MenuItem";
 import HeroImage from "../assets/currentorder_hero.jpg";
 import { completeOrders } from "../utils/orderRequests";
 
-export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
+const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
   const { user } = useAuth0();
 
   const getUserName = () => {
-    if (user.nickname.includes(".")) {
-      return user.nickname.split(".")[0];
+    const userNickname = user && user.nickname;
+    if (user && userNickname.includes(".")) {
+      return userNickname.split(".")[0];
     }
-    return user.nickname;
+    return userNickname;
   };
 
   const getTotal = () => {
@@ -42,7 +43,7 @@ export const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
         image={HeroImage}
       />
       <Container className="section">
-        {pendingOrders.length > 0 ? (
+        {pendingOrders && pendingOrders.length > 0 ? (
           <>
             <Row>
               {pendingOrders.map((order) => {

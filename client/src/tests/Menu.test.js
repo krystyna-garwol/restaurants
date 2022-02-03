@@ -1,13 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Home from "../views/Home";
+import Menu from "../views/Menu";
 
-describe("Home page", () => {
+describe("Menu page", () => {
   test("renders hero section text correctly", () => {
-    render(<Home />);
+    render(<Menu />);
     expect(
-      screen.getByText(/Order food to your door with us/)
+      screen.getByText(/Check out our menu for takeaway orders, we deliver/)
     ).toBeInTheDocument();
   });
 });

@@ -25,13 +25,14 @@ const BookTable = ({ restaurants }) => {
             <Form.Label>Restaurant</Form.Label>
             <Form.Select>
               <option>Pick a Restaurant</option>
-              {restaurants.map((restaurant) => {
-                return (
-                  <option key={restaurant.id} value={restaurant.name}>
-                    {restaurant.name}
-                  </option>
-                );
-              })}
+              {restaurants &&
+                restaurants.map((restaurant) => {
+                  return (
+                    <option key={restaurant.id} value={restaurant.name}>
+                      {restaurant.name}
+                    </option>
+                  );
+                })}
             </Form.Select>
           </Form.Group>
           <br />

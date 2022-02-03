@@ -1,13 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Home from "../views/Home";
+import BookTable from "../views/BookTable";
 
-describe("Home page", () => {
+describe("Book Table page", () => {
   test("renders hero section text correctly", () => {
-    render(<Home />);
-    expect(
-      screen.getByText(/Order food to your door with us/)
-    ).toBeInTheDocument();
+    render(<BookTable />);
+    expect(screen.getByText(/Book a Table/)).toBeInTheDocument();
   });
 });
