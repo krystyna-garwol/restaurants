@@ -26,8 +26,10 @@ public class OrderController {
     @PostMapping("")
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         List<Order> existing = orderService.getAllByNameAndUserId(order.getName(), order.getUserId());
-        if(existing.size() != 0) {
-            throw new OrderException();
+        for(Order i : existing) {
+            if(existing.size() != 0 && !i.getCompleted().equals(true)) {
+                throw new OrderException();
+            }
         }
         Order newOrder = orderService.addOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.OK);

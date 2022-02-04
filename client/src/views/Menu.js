@@ -150,78 +150,80 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
             </h5>
           )}
         {admin === "admin" && (
-          <div className="form-border">
-            <h4>Add Menu</h4>
-            <p style={{ color: "red" }}>{errorResponse.message}</p>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group>
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  size="lg"
-                  type="text"
-                  placeholder="e.g. Garlic Pizza Bread"
-                  name="name"
-                  value={formData.name}
-                  isInvalid={errors.name}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.name}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <br />
-              <Form.Group>
-                <Form.Label>Course</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  size="lg"
-                  type="text"
-                  placeholder="e.g. Starter"
-                  name="course"
-                  value={formData.course}
-                  isInvalid={errors.course}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.course}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <br />
-              <Form.Group>
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  size="lg"
-                  type="number"
-                  placeholder="0"
-                  name="price"
-                  value={formData.price}
-                  isInvalid={errors.price}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.price}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <br />
-              <Form.Group>
-                <Form.Label>In Stock</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  size="lg"
-                  type="number"
-                  placeholder="0"
-                  name="inStock"
-                  value={formData.inStock}
-                  isInvalid={errors.inStock}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.inStock}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <br />
-              <button type="submit" className="btn-colour">
-                Add
-              </button>
-            </Form>
+          <div style={{ paddingBottom: "4rem" }}>
+            <div className="form-border">
+              <h4>Add Menu</h4>
+              <p style={{ color: "red" }}>{errorResponse.message}</p>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    onChange={handleChange}
+                    size="lg"
+                    type="text"
+                    placeholder="e.g. Garlic Pizza Bread"
+                    name="name"
+                    value={formData.name}
+                    isInvalid={errors.name}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.name}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <Form.Group>
+                  <Form.Label>Course</Form.Label>
+                  <Form.Control
+                    onChange={handleChange}
+                    size="lg"
+                    type="text"
+                    placeholder="e.g. Starter"
+                    name="course"
+                    value={formData.course}
+                    isInvalid={errors.course}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.course}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <Form.Group>
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    onChange={handleChange}
+                    size="lg"
+                    type="number"
+                    placeholder="0"
+                    name="price"
+                    value={formData.price}
+                    isInvalid={errors.price}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.price}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <Form.Group>
+                  <Form.Label>In Stock</Form.Label>
+                  <Form.Control
+                    onChange={handleChange}
+                    size="lg"
+                    type="number"
+                    placeholder="0"
+                    name="inStock"
+                    value={formData.inStock}
+                    isInvalid={errors.inStock}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.inStock}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <button type="submit" className="btn-colour">
+                  Add
+                </button>
+              </Form>
+            </div>
           </div>
         )}
       </Container>

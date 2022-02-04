@@ -54,7 +54,7 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <NavBar admin={admin} />
+      <NavBar admin={admin} pendingOrders={pendingOrders} />
       <Switch>
         <Route
           path="/"

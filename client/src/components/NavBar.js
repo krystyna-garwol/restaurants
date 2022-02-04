@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 
 import Logo from "../assets/logo.png";
 
-const NavBar = ({ admin }) => {
+const NavBar = ({ admin, pendingOrders }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const logoutWithRedirect = () =>
@@ -58,7 +58,9 @@ const NavBar = ({ admin }) => {
                     activeClassName="router-link-exact-active"
                     className="menu-item"
                   >
-                    Current Order
+                    {pendingOrders.length > 0
+                      ? `Current Order (${pendingOrders.length})`
+                      : "Current Order"}
                   </NavLink>
                   <NavLink
                     to="/contact"
