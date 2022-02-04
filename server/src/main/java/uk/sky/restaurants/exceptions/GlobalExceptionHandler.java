@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = StockException.class)
     private ResponseEntity<Error> handleStockException(StockException exception) {
-        Error error = new Error(HttpStatus.CONFLICT, exception.getMessage());
+        Error error = new Error(HttpStatus.BAD_REQUEST, exception.getMessage());
         log.error(error.getMessage());
         return getError(error);
     }
