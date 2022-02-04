@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class StockException extends RuntimeException {
-
     private int itemsAvailable;
     private String message;
 
