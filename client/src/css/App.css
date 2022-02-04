@@ -106,22 +106,6 @@ h4 {
   }
 }
 
-/* Footer Component*/
-.footer-one {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer-one {
-  margin-bottom: 1.5rem;
-}
-.footer-two {
-  margin: 1.5rem 0 0.5rem 0;
-}
-.copyright {
-  margin-bottom: 0;
-}
-
 /* Restaurant Menu Item Component */
 .card-menu-item {
   margin-bottom: 1rem;
@@ -236,12 +220,12 @@ h4 {
 }
 .note {
   font-size: 1.1rem;
-  color: #e71d36;
+  color: #2ec4b6;
   text-align: center;
   margin-bottom: 2rem;
+  font-weight: 600;
 }
 #current-order-link {
-  font-weight: 700;
-  color: #e71d36;
+  color: #2ec4b6;
   text-decoration: none;
 }
