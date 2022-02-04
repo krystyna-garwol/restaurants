@@ -129,7 +129,12 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                 {user && (
                   <Row style={{ textAlign: "center" }}>
                     <Link to="/current-order">
-                      <button className="btn-colour">View Current Order</button>
+                      <button
+                        style={{ marginBottom: "4rem" }}
+                        className="btn-colour"
+                      >
+                        View Current Order
+                      </button>
                     </Link>
                   </Row>
                 )}
