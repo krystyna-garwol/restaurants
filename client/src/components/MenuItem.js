@@ -23,7 +23,6 @@ const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
   });
   const [error, setError] = useState();
   const [errorResponse, setErrorResponse] = useState({});
-  console.log(formData);
 
   const pathName = window.location.pathname;
 
@@ -61,7 +60,13 @@ const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
     } else {
       updateOrder(formData, setPendingOrders, userId, token);
       setFormData({
+        id: item.id,
+        name: item.name,
         quantity: "",
+        price: item.price,
+        restaurantId: restaurantId,
+        completed: 0,
+        userId: userId,
       });
     }
   };

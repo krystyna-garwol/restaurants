@@ -46,7 +46,6 @@ public class OrderService {
     }
 
     public Order updateOrder(Order order) {
-        System.out.println(order.getCompleted());
         Optional<Order> existing = orderRepository.findById(order.getId());
         existing.get().setQuantity(order.getQuantity());
         return orderRepository.save(existing.get());
