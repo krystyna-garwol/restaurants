@@ -22,6 +22,7 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     userId: userId,
   });
   const [error, setError] = useState();
+  const [errorResponse, setErrorResponse] = useState({});
 
   const pathName = window.location.pathname;
 
@@ -38,7 +39,7 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     } else if (newError) {
       setError(newError);
     } else {
-      addOrder(formData, setPendingOrders, userId, token);
+      addOrder(formData, setPendingOrders, userId, token, setErrorResponse);
       setFormData({
         quantity: "",
       });
@@ -72,6 +73,9 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
 
   return (
     <Card className="card-menu-item">
+      <Col>
+        <span style={{ color: "red" }}>{errorResponse.message}</span>
+      </Col>
       <div className="rest-menu-item">
         <Col lg={4} md={4} xs={8}>
           <div>

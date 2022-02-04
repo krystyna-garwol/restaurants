@@ -16,7 +16,13 @@ export const getPendingOrders = (setPendingOrders, userId) => {
     .catch((err) => console.log(err));
 };
 
-export const addOrder = (formData, setPendingOrders, userId, token) => {
+export const addOrder = (
+  formData,
+  setPendingOrders,
+  userId,
+  token,
+  setErrorResponse
+) => {
   axiosInstance
     .post("/orders", formData, {
       headers: {
@@ -25,7 +31,7 @@ export const addOrder = (formData, setPendingOrders, userId, token) => {
       },
     })
     .then(() => getPendingOrders(setPendingOrders, userId))
-    .catch((err) => console.log(err));
+    .catch((err) => setErrorResponse(err.response.data));
 };
 
 export const updateOrder = (formData, setPendingOrders, userId, token) => {

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uk.sky.restaurants.exceptions.OrderException;
 import uk.sky.restaurants.models.Order;
 import uk.sky.restaurants.services.OrderService;
 
@@ -26,7 +27,7 @@ public class OrderController {
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         List<Order> existing = orderService.getAllByNameAndUserId(order.getName(), order.getUserId());
         if(existing.size() != 0) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            throw new OrderException();
         }
         Order newOrder = orderService.addOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.OK);

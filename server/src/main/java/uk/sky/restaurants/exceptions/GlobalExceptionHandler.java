@@ -30,4 +30,11 @@ public class GlobalExceptionHandler {
         log.error(error.getMessage());
         return getError(error);
     }
+
+    @ExceptionHandler(value = OrderException.class)
+    private ResponseEntity<Error> handleOrderException(OrderException exception) {
+        Error error = new Error(HttpStatus.CONFLICT, "You have added this item already. Please visit the Current Order page to update your order instead.");
+        log.error(error.getMessage());
+        return getError(error);
+    }
 }
