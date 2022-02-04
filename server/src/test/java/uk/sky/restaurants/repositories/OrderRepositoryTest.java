@@ -16,7 +16,7 @@ public class OrderRepositoryTest {
     @Autowired
     private OrderRepository orderRepository;
 
-    private Order order = new Order("1", "Dough Balls", 2, 4.99, "Cento Uno", false, "123");
+    private Order order = new Order("1", "Dough Balls", 2, 4.99, "12345", false, "123");
 
     @Test
     @org.junit.jupiter.api.Order(1)

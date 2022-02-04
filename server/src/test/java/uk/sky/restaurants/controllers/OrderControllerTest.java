@@ -41,7 +41,7 @@ public class OrderControllerTest {
     private OrderService orderService;
 
     private List<Order> orders = new ArrayList<>();
-    private Order order = new Order("1", "Dough Balls", 2, 4.99, "Cento Uno", false, "123");
+    private Order order = new Order("1", "Dough Balls", 2, 4.99, "12345", false, "123");
 
     @BeforeAll
     public void beforeAll() {
