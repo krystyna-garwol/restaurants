@@ -2,6 +2,8 @@ package uk.sky.restaurants.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uk.sky.restaurants.exceptions.StockException;
+import uk.sky.restaurants.models.MenuItem;
 import uk.sky.restaurants.models.Order;
 import uk.sky.restaurants.repositories.OrderRepository;
 
@@ -14,6 +16,9 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private MenuService menuService;
 
     public List<Order> getPendingOrdersByUserId(String userId) {
         List<Order> pendingOrders = new ArrayList<>();
@@ -31,10 +36,17 @@ public class OrderService {
     }
 
     public Order addOrder(Order order) {
-        return orderRepository.save(order);
+        MenuItem menuItem = menuService.getMenuItemByNameAndRestaurantId(order.getName(), order.getRestaurantId());
+        int stockDiff = menuItem.getInStock() - order.getQuantity();
+        int itemsAvailable = order.getQuantity() + stockDiff;
+        if(stockDiff > 0 || menuItem.getInStock().equals(order.getQuantity())) {
+            return orderRepository.save(order);
+        }
+        throw new StockException(itemsAvailable);
     }
 
     public Order updateOrder(Order order) {
+        System.out.println(order.getCompleted());
         Optional<Order> existing = orderRepository.findById(order.getId());
         existing.get().setQuantity(order.getQuantity());
         return orderRepository.save(existing.get());

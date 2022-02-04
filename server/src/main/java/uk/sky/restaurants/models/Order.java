@@ -17,7 +17,7 @@ public class Order {
     private String name;
     private Integer quantity;
     private Double price;
-    private String restaurantName;
+    private String restaurantId;
     private Boolean completed;
     private String userId;
 }

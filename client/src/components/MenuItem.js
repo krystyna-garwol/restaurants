@@ -9,7 +9,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 
 import { addOrder, updateOrder, deleteOrder } from "../utils/orderRequests";
 
-const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
+const MenuItem = ({ item, restaurantId, setPendingOrders, token }) => {
   const { user, loginWithRedirect } = useAuth0();
   const userId = user && user.sub;
   const [formData, setFormData] = useState({
@@ -17,18 +17,20 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     name: item.name,
     quantity: "",
     price: item.price,
-    restaurantName: restaurantName,
+    restaurantId: restaurantId,
     completed: 0,
     userId: userId,
   });
   const [error, setError] = useState();
   const [errorResponse, setErrorResponse] = useState({});
+  console.log(formData);
 
   const pathName = window.location.pathname;
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if (error) setError(null);
+    if (errorResponse) setErrorResponse({});
   };
 
   const addToCurrentOrder = () => {
@@ -41,7 +43,13 @@ const MenuItem = ({ item, restaurantName, setPendingOrders, token }) => {
     } else {
       addOrder(formData, setPendingOrders, userId, token, setErrorResponse);
       setFormData({
+        id: item.id,
+        name: item.name,
         quantity: "",
+        price: item.price,
+        restaurantId: restaurantId,
+        completed: 0,
+        userId: userId,
       });
     }
   };

@@ -120,7 +120,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
                     <MenuItem
                       key={item.id}
                       item={item}
-                      restaurantName={restaurant && restaurant.name}
+                      restaurantId={restaurant && restaurant.id}
                       setPendingOrders={setPendingOrders}
                       token={token}
                     />

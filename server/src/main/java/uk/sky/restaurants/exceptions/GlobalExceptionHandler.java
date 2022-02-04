@@ -37,4 +37,11 @@ public class GlobalExceptionHandler {
         log.error(error.getMessage());
         return getError(error);
     }
+
+    @ExceptionHandler(value = StockException.class)
+    private ResponseEntity<Error> handleStockException(StockException exception) {
+        Error error = new Error(HttpStatus.CONFLICT, exception.getMessage());
+        log.error(error.getMessage());
+        return getError(error);
+    }
 }

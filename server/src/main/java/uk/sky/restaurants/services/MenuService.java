@@ -24,4 +24,8 @@ public class MenuService {
     public MenuItem addMenuItem(MenuItem menuItem) {
         return menuRepository.save(menuItem);
     }
+
+    public MenuItem getMenuItemByNameAndRestaurantId(String name, String restaurantId) {
+        return menuRepository.findByNameAndRestaurantId(name, restaurantId);
+    }
 }

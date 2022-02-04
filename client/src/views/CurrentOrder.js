@@ -49,7 +49,6 @@ const CurrentOrder = ({ pendingOrders, setPendingOrders, token }) => {
               {pendingOrders.map((order) => {
                 return (
                   <>
-                    <p>{order.restaurantName}</p>
                     <MenuItem
                       key={order.id}
                       item={order}
