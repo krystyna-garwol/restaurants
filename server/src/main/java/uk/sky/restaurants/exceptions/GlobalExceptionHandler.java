@@ -23,4 +23,11 @@ public class GlobalExceptionHandler {
         log.error(error.getMessage());
         return getError(error);
     }
+
+    @ExceptionHandler(value = MenuException.class)
+    private ResponseEntity<Error> handleMenuException(MenuException exception) {
+        Error error = new Error(HttpStatus.CONFLICT, "Menu item already exists.");
+        log.error(error.getMessage());
+        return getError(error);
+    }
 }

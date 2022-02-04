@@ -22,6 +22,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
   const allCourses = ["all", ...new Set(menuItems.map((item) => item.course))];
   const [filteredMenuItems, setFilteredMenuItems] = useState([]);
   const [errors, setErrors] = useState({});
+  const [errorResponse, setErrorResponse] = useState({});
 
   useEffect(() => {
     getMenus(setMenuItems, restaurantId);
@@ -44,7 +45,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      addMenu(formData, setMenuItems, token);
+      addMenu(formData, setMenuItems, token, setErrorResponse);
       setFormData({
         name: "",
         course: "",
@@ -146,6 +147,7 @@ const Menu = ({ restaurants, admin, token, setPendingOrders, user }) => {
         {admin === "admin" && (
           <div className="form-border">
             <h4>Add Menu</h4>
+            <p style={{ color: "red" }}>{errorResponse.message}</p>
             <Form onSubmit={handleSubmit}>
               <Form.Group>
                 <Form.Label>Name</Form.Label>

@@ -14,7 +14,7 @@ export const getMenus = (setMenuItems, restaurantId) => {
     .catch((err) => console.log(err));
 };
 
-export const addMenu = (formData, setMenuItems, token) => {
+export const addMenu = (formData, setMenuItems, token, setErrorResponse) => {
   axiosInstance
     .post("/menus", formData, {
       headers: {
@@ -22,5 +22,5 @@ export const addMenu = (formData, setMenuItems, token) => {
       },
     })
     .then(() => getMenus(setMenuItems, formData.restaurantId))
-    .catch((err) => console.log(err));
+    .catch((err) => setErrorResponse(err.response.data));
 };

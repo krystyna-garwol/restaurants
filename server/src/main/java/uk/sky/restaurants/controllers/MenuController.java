@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uk.sky.restaurants.exceptions.MenuException;
 import uk.sky.restaurants.models.MenuItem;
 import uk.sky.restaurants.services.MenuService;
 
@@ -27,7 +28,7 @@ public class MenuController {
         List<MenuItem> menuItems = menuService.getMenuItemsByName(menuItem.getName());
         for(MenuItem item : menuItems) {
             if(item.getName().equals(menuItem.getName()) && item.getRestaurantId().equals(menuItem.getRestaurantId())) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+                throw new MenuException();
             }
         }
         MenuItem newMenuItem = menuService.addMenuItem(menuItem);
