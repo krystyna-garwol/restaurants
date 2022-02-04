@@ -17,6 +17,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
   });
   const [formImage, setFormImage] = useState();
   const [errors, setErrors] = useState({});
+  const [errorResponse, setErrorResponse] = useState({});
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -39,7 +40,13 @@ const AddRestaurant = ({ setRestaurants, token }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      addRestaurant(formData, formImage, setRestaurants, token);
+      addRestaurant(
+        formData,
+        formImage,
+        setRestaurants,
+        token,
+        setErrorResponse
+      );
       setFormData({
         name: "",
         city: "",
@@ -73,6 +80,7 @@ const AddRestaurant = ({ setRestaurants, token }) => {
       <Container className="section">
         <div className="form-border">
           <h4>Add restaurant</h4>
+          <p style={{ color: "red" }}>{errorResponse.message}</p>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Name</Form.Label>

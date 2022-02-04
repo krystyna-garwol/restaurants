@@ -13,7 +13,13 @@ export const getRestaurants = (setRestaurants) => {
     .catch((err) => console.log(err));
 };
 
-export const addRestaurant = (formData, formImage, setRestaurants, token) => {
+export const addRestaurant = (
+  formData,
+  formImage,
+  setRestaurants,
+  token,
+  setErrorResponse
+) => {
   let form = new FormData();
   form.append(
     "data",
@@ -32,5 +38,5 @@ export const addRestaurant = (formData, formImage, setRestaurants, token) => {
       getRestaurants(setRestaurants);
       history.push("/");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => setErrorResponse(err.response.data));
 };
