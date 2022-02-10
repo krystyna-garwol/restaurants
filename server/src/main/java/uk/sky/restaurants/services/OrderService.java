@@ -1,5 +1,6 @@
 package uk.sky.restaurants.services;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.sky.restaurants.exceptions.StockException;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Getter
 public class OrderService {
 
     @Autowired

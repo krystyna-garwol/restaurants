@@ -35,7 +35,7 @@ public class OrderRepositoryTest {
 
     @Test
     @org.junit.jupiter.api.Order(3)
-    public void whenFindAllByNameAndUserId_returnsAsExpected() {
+    public void whenFindAllByNameAndUserIdCalled_returnsAsExpected() {
         List<Order> orders = orderRepository.findAllByNameAndUserId(order.getName(), order.getUserId());
         Order orderOne = orders.get(0);
         assertThat(orderOne.getName()).isEqualTo(order.getName());

@@ -12,6 +12,7 @@ import uk.sky.restaurants.repositories.RestaurantRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,7 +30,7 @@ public class RestaurantServiceTest {
     private RestaurantService restaurantService;
 
     private List<Restaurant> restaurants = new ArrayList<>();
-    private Restaurant restaurant = new Restaurant("1", "Cento Uno", "Surbiton", "italian", null);
+    private Restaurant restaurant = new Restaurant("1", "Cento Uno", "Surbiton", "italian", "");
 
     @BeforeAll
     public void beforeAll() {
@@ -55,5 +56,15 @@ public class RestaurantServiceTest {
         when(restaurantRepository.findAllByName(anyString())).thenReturn(restaurants);
         List<Restaurant> allRestaurants =restaurantService.getAllRestaurantsByName(restaurant.getName());
         assertThat(restaurants).isEqualTo(allRestaurants);
+    }
+
+    @Test
+    public void whenUpdateRestaurantImageCalled_restaurantIsUpdated() {
+        when(restaurantRepository.findById(anyString())).thenReturn(Optional.of(restaurant));
+        restaurant.setImage("https://mock-image.jpg");
+        when(restaurantRepository.save(any())).thenReturn(restaurant);
+        Restaurant updatedRestaurant = restaurantService.updateRestaurantImage(restaurant.getId(), restaurant.getImage());
+        assertThat(restaurant.getImage()).isEqualTo(updatedRestaurant.getImage());
+        assertThat(restaurant).isEqualTo(updatedRestaurant);
     }
 }

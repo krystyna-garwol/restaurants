@@ -31,7 +31,7 @@ public class MenuRepositoryTest {
 
     @Test
     @Order(2)
-    public void whenFindAllByName_ReturnsAsExpected() {
+    public void whenFindAllByNameCalled_ReturnsAsExpected() {
         List<MenuItem> menuItems = menuRepository.findAllByName(menuItem.getName());
         MenuItem menuItemOne = menuItems.get(0);
         assertThat(menuItem.getName()).isEqualTo(menuItemOne.getName());
@@ -39,7 +39,7 @@ public class MenuRepositoryTest {
 
     @Test
     @Order(3)
-    public void whenFindAllByRestaurantId_ReturnsAsExpected() {
+    public void whenFindAllByRestaurantIdCalled_ReturnsAsExpected() {
         List<MenuItem> menuItems = menuRepository.findAllByRestaurantId(menuItem.getRestaurantId());
         MenuItem menuItemOne = menuItems.get(0);
         assertThat(menuItem.getRestaurantId()).isEqualTo(menuItemOne.getRestaurantId());

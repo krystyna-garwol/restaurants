@@ -56,4 +56,11 @@ public class MenuServiceTest {
         List<MenuItem> retrievedMenuItems = menuService.getMenuItemsByName(menuItem.getName());
         assertThat(menuItems).isEqualTo(retrievedMenuItems);
     }
+
+    @Test
+    public void whenGetMenuItemByNameAndRestaurantIdCalled_returnsAsExpected() {
+        when(menuRepository.findByNameAndRestaurantId(anyString(), anyString())).thenReturn(menuItem);
+        MenuItem newMenuItem = menuService.getMenuItemByNameAndRestaurantId(menuItem.getName(), menuItem.getRestaurantId());
+        assertThat(menuItem).isEqualTo(newMenuItem);
+    }
 }
